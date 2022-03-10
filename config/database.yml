@@ -31,21 +31,21 @@
 #   database: <%= ENV['DATABASE_NAME'] %>
 #   username: <%= ENV['DATABASE_USERNAME'] %>
 #   password: <%= ENV['DATABASE_PASSWORD'] %>
-default: &default
-  adapter: mysql2
-  encoding: utf8mb4
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: vinova123
-  socket: /var/run/mysqld/mysqld.sock
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8mb4
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   username: root
+#   password: vinova123
+#   socket: /var/run/mysqld/mysqld.sock
 
-development:
-  <<: *default
-  database: bksupport_development
+# development:
+#   <<: *default
+#   database: bksupport_development
 
-test:
-  <<: *default
-  database: bksupport_test
+# test:
+#   <<: *default
+#   database: bksupport_test
 
 
 production:
@@ -53,3 +53,45 @@ production:
   database: bksupport_production
   username: bksupport
   password: <%= ENV['BKSUPPORT_DATABASE_PASSWORD'] %>
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+production:
+  <<: *default
+  database: heroku_production
+
+staging:
+  <<: *default
+  database: heroku_staging
+
+development:
+  <<: *default
+  database: heroku_development
+
+
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8mb4
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   username: root
+#   password: vinova123
+#   socket: /var/run/mysqld/mysqld.sock
+
+# development:
+#   <<: *default
+#   database: bksupport_development
+
+# test:
+#   <<: *default
+#   database: bksupport_test
+
+
+# production:
+#   <<: *default
+#   database: bksupport_production
+#   username: bksupport
+#   password: <%= ENV['BKSUPPORT_DATABASE_PASSWORD'] %>
