@@ -7,15 +7,15 @@ default: &default
 
 production:
   <<: *default
-  database: heroku_production
+  database: bksupport_production
 
 staging:
   <<: *default
-  database: heroku_staging
+  database: bksupport_staging
 
 development:
   <<: *default
-  database: heroku_development
+  database: bksupport_development
 
 
 # default: &default
