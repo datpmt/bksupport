@@ -1,0 +1,32 @@
+<div class="sign_in_form">
+  <div class="container" >
+    <div class="col-lg-5 col-md-7 col-12 m-auto">
+      <div class="text-center mb-40px">
+        <%= image_tag 'Logo.svg' %>
+        <p class="mt-30px font-weight-700 font-size-22px">FORGOT PASSWORD</p>
+      </div>
+      <div class="">
+        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <div class="input-form">
+            <div>
+              <%= f.input :email,
+                          required: true,
+                          autofocus: true,
+                          label: false,
+                          input_html: { class: "form-control mb-20px pl-24px", placeholder: "Email" } %>
+            </div>
+          </div>
+
+          <div class="remember mb-12px" id="intro_group">
+            <div class="forgot-password d-inline-block" style="float:right">
+              <%= link_to "Back to Log In", new_session_path(resource_name), class: "color-black text-decoration-none" %><br />
+            </div>
+          </div>
+          <div class="form-actions input-form" style="width:529px; margin: 0 auto">
+            <%= f.button :submit, "Submit", class: "btn btn-yellow color-white w-100 pl-0 font-weight-700", id: "button-submit" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

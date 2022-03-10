@@ -1,0 +1,26 @@
+@each $size,
+$value in $value-sizes {
+  .pt-#{$size} {
+    padding-top: $value;
+  }
+  .pb-#{$size} {
+    padding-bottom: $value;
+  }
+  .pl-#{$size} {
+    padding-left: $value;
+  }
+  .pr-#{$size} {
+    padding-right: $value;
+  }
+  .p-#{$size} {
+    padding: $value;
+  }
+  .py-#{$size} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+  .px-#{$size} {
+    padding-left: $value;
+    padding-right: $value;
+  }
+}

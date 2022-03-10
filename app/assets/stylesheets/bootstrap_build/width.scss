@@ -1,0 +1,6 @@
+@each $size,
+$value in $value-sizes {
+  .width-#{$size} {
+    width: $value;
+  }
+}

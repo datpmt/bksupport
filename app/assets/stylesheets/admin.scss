@@ -1,0 +1,42 @@
+@import "bootstrap/scss/bootstrap";
+@import "font_face";
+@import "font";
+@import "admin/*";
+@import "bootstrap_build/base";
+@import "bootstrap_build/*";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "neueHass";
+  // font-family: $font-futura-bk-bt;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #000;
+}
+
+
+*:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+// Demo
+.canvas-container {
+  border: 1px solid #999;
+}
+
+.letter-4-percent {
+  letter-spacing: 0.04px;
+}
+
+.cursor {
+  cursor: pointer;
+}

@@ -1,0 +1,69 @@
+<%= simple_form_for @customer, url: url, method: method do |f| %>
+  <div class="form-inputs mb-10px form-cms row">
+    <div class="col-xxl-6">
+      <div class="row">
+        <div class="form-cms-input col-md-6">
+          <label>Username*</label>
+          <%= f.input :username,
+                      required: true, label: false,
+                      input_html: { class: "form-control" } %>
+        </div>
+        <div class="form-cms-input col-md-6">
+          <label>Real Name</label>
+          <%= f.input :realname,
+                      required: true, label: false,
+                      input_html: { class: "form-control" } %>
+        </div>
+        <div class="form-cms-input col-md-6 pt-43px">
+          <label>Birthday</label>
+          <%= f.input :dob,
+                      required: true, label: false,
+                      input_html: { class: "form-control" } %>
+        </div>
+        <div class="form-cms-input col-md-6 pt-43px">
+          <label>ZIP code</label>
+          <%= f.input :zipcode,
+                      required: true, label: false,
+                      input_html: { class: "form-control" } %>
+        </div>
+
+        <div class="pt-43px pr-20px col-xxl-12">
+          <%= f.input :address,
+                      required: true, label: false,
+                      input_html: { class: "form-control cms-input-address" } %>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-6">
+      <div class="row">
+        <div class="form-cms-input col-md-6">
+          <label>Email*</label>
+          <%= f.input :email,
+                      required: true, label: false,
+                      input_html: { class: "form-control" } %>
+        </div>
+        <div class="form-cms-input col-md-6">
+          <label>Phone Number*</label>
+          <%= f.input :phone,
+                      required: true, label: false,
+                      input_html: { class: "form-control" } %>
+        </div>
+        <div class="form-cms-input col-md-6 pt-43px">
+          <label>Country</label>
+          <%= f.input :country, as: :string,
+                      required: true, label: false,
+                      input_html: { class: "form-control" } %>
+        </div>
+        <div class="form-cms-input col-md-6 pt-43px">
+          <label>Status</label>
+          <%= f.input :status, as: :select, collection: [['Available', 'available'], ['Disable', 'disable']], required: true,
+              autofocus: true, label: false,
+              input_html: { class: "form-control" } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-actions d-none">
+    <%= f.button :submit, "Save", class: "", id: "button-submit" %>
+  </div>
+<% end %>

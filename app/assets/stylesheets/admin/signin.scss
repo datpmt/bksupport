@@ -1,0 +1,35 @@
+.wrapper-admin {
+  // background-image: asset_url("dot_paper_background.png"); 
+  .alert-alert {
+   background: #F6C750; 
+  }
+}
+.sign_in_form {
+  padding-top: calc((100vh - 473px)/2);
+  .alert-alert {
+    background: #A70A0A;
+  }
+  .input-form {
+    input:focus {
+      border: 1px solid #FFDD00;
+    }
+  }
+}
+.admin-form {
+  width: 50%;
+  margin: auto;
+}
+.input-form {
+  input {
+    height: 64px;
+    width: 529px;
+    border: 1px solid #FFDD00;
+    margin: 0 auto;
+    border-radius: 0;
+  }
+}
+.remember {
+  width: 529px;
+  height: 56px;
+  margin: 0 auto;
+}

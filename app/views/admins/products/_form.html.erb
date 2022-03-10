@@ -1,0 +1,58 @@
+<%= simple_form_for @product, url: url, method: method do |f| %>
+  <div class="form-inputs mb-10px form-cms row">
+    <div class="form-cms-input col-xxl-3">
+      <label>Product Name *</label>
+      <%= f.input :name,
+          required: true, label: false,
+          input_html: { class: "form-control" } %>
+    </div>
+    <div class="form-cms-input col-xxl-3">
+      <label>Price * (vnd)</label>
+      <%= f.input :price,
+        required: true, label: false,
+        input_html: { class: "form-control" } %>
+    </div>
+    <div class="form-cms-input col-xxl-3">
+      <label>Quantity *</label>
+      <%= f.input :quantity,
+        required: true, label: false,
+        input_html: { class: "form-control", type: 'number' } %>
+    </div>
+    <div class="form-cms-input col-xxl-3 pr-0px">
+      <label>City *</label>
+      <%= f.input :city_id, as: :select, collection: (City.all).to_a,
+          autofocus: true, label: false, include_blank: false,
+          input_html: { class: "form-control"} %>
+    </div>
+  </div>
+  <div class="form-inputs mb-10px form-cms row">
+      <div class="form-cms-input col-xxl-3">
+        <label>Short description *</label>
+        <%= f.input :short_des,
+          required: true, label: false,
+          input_html: { class: "form-control" } %>
+      </div>
+      <div class="form-cms-input col-xxl-3">
+        <label>Sale off * (%)</label>
+        <%= f.input :sale_off,
+          required: true, label: false,
+          input_html: { class: "form-control", type: 'number' } %>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Description *</label>
+      <%= f.input :description, as: :text,
+        required: true, label: false,
+        autofocus: true,
+        input_html: { class: "form-control", style: 'min-height: 171px' } %>
+    </div>
+    <div class="col-md-6">
+      <label>Upload Images *</label>
+      <%= image_tag("add-thumb-icon.png", class: 'blank_preview d-block', onclick: 'clickUpload(this)') %>
+    </div>
+  </div>
+<div class="form-actions d-none">
+  <%= f.button :submit, "Create", class: "", id: "button-submit" %>
+</div>
+<% end %>

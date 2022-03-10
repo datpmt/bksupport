@@ -1,0 +1,74 @@
+<div class="">
+  <div class="card">
+    <div class="card-header p-10px">
+      <div class="d-flex" style="justify-content: space-between;">
+        <div class="ml-28px">
+          <%= link_to new_admins_product_path,
+              class: 'btn btn-create' do %>
+              <%= image_tag "icon_add.png", style:"width:16px" %> Create
+          <% end %>
+        </div>
+        <div class="search-tab mr-96px">
+          <i class="fas fa-search search-icon"></i>
+          <%= form_tag(admins_products_path, method: 'get') do %>
+            <%= text_field_tag(:search, params[:search], class:"form-control search-bar mt-5px pl-25px", placeholder: "Search" ) %>
+          <% end%>
+        </div>
+      </div>
+    </div>
+    <div class="card-body body-products p-0">
+      <div class="table-responsive">
+        <table class="table table-borderless">
+          <thead class="bg-muted">
+            <tr>
+              <th scope="col" class="pl-38px">UID</th>
+              <th scope="col">
+                Product Name
+                <%= link_to admins_products_path(sort: "username"), class: "username_sort", remote: true do %>
+                  <%= image_tag 'sort_icon.svg', class:"pb-5px"%>
+                <% end %>
+              </th>
+              <th scope="col">
+                Price
+                <%= link_to admins_products_path(sort: "email"), class: "email_sort", remote: true do %>
+                  <%= image_tag 'sort_icon.svg', class:"pb-5px"%>
+                <% end %>
+              </th>
+              <th scope="col">Quantity</th>
+              <th scope="col">City</th>
+              <th scope="col">Short Description</th>
+              <th scope="col" class="width-100px pr-172px"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% i = 1 %>
+            <% @products.each do |product| %>
+              <tr style = "background-color: <%= i % 2 == 0? '#F9F9F9' : '' %> ">
+                <% i += 1 %>
+                <th scope="row" class="pl-38px"><%= 1000 + product.id %></th>
+                <td><%= product.name %></td>
+                <td><%= product.price %> vnd</td>
+                <td><%= product.quantity %></td>
+                <td><%= product.city.name %></td>
+                <td><%= product.short_des %></td>
+                <td>
+                  <%= link_to edit_admins_product_path(product), class: 'admin-link' do %>
+                    <%= image_tag 'pencil_edit.svg'%>
+                  <% end %>
+                  <% unless current_administrator == product %>
+                    <%= link_to admins_product_path(product), method: :DELETE, data: {confirm: "Are you sure?"}, class: 'admin-link color-red' do %>
+                      <%= image_tag 'trash.svg'%>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="paging">
+        <%== render partial: 'shared/pagination', locals: {pagy: @pagy} %>
+      </div>
+    </div>
+  </div>
+</div>

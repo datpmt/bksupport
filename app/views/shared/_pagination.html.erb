@@ -1,0 +1,48 @@
+<% if !pagy.nil?%>
+  <% link = pagy_link_proc(pagy) %>
+  <nav aria-label="pager" class="table-pagination" role="navigation">
+    <ul class="pagination position-relative">
+      <% if pagy.prev %>
+        <li class="page-item">
+          <% img = image_tag 'left.svg', class:'mr-20px'%>
+          <%== link.call(pagy.prev, img) %>
+        </li>
+      <% else %>
+        <li class="page-item disabled">
+          <% img = image_tag 'left.svg', class:'mr-20px'%>
+          <%== link.call(pagy.prev, img, 'class="link-disable"') %>
+        </li>
+      <% end %>
+      <% pagy.series.each do |item| %>
+        <% if item.is_a?(Integer) %>
+          <li class="page-item mx-10px">
+            <%== link.call(item, item, 'class=page-pagy') %>
+          </li>
+        <% elsif item.is_a?(String) %>
+          <div class="position-absolute page-pagy" style="left: -85px">
+            <p>1-<%= item.to_i <= 4? ( pagy.last < 4? pagy.last : '4' ) : ( item.to_i == pagy.last - 2? pagy.last : item ) %> of <%= pagy.last %>
+            </p>
+          </div>
+          <li class="page-item active">
+            <%= link_to(item, "javascript:void(0)", class: "page-pagy mx-10px color-active") %>
+          </li>
+        <% elsif item == :gap %>
+        <li class="page-item disabled">
+            <%== link_to("...", "javascript:void(0)", class: "page-pagy mx-10px ") %>
+          </li>
+        <% end %>
+      <% end %>
+      <% if pagy.next %>
+        <li class="page-item ml-20px">
+          <% img = image_tag 'right.svg'%>
+          <%== link.call(pagy.next, img) %>
+        </li>
+      <% else %>
+        <li class="page-item disabled ml-20px">
+          <% img = image_tag 'right.svg'%>
+          <%== link.call(pagy.last, img, 'class="link-disable"') %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+<% end%>

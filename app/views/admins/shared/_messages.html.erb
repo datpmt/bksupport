@@ -1,0 +1,17 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key == 'notice' ? 'success' : key %>">
+    <ul class="mt-2px mb-1px">
+      <div class="mb-1px text-center">
+        <% if params["controller"] == "admins/templates" %>
+          <% if key == 'success' %>
+            <%= value %>
+          <% else %>
+            <p class="mb-1px">Please complete all required fields!</p>
+          <% end %>
+        <% else %>
+          <%= value %>
+        <% end %>
+      </div>
+    </ul>
+  </div>
+<% end %>

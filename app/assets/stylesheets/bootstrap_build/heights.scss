@@ -1,0 +1,24 @@
+@each $size,
+$value in $value-sizes {
+  .height-#{$size} {
+    height: $value;
+  }
+}
+
+@each $size,
+$value in $value-sizes {
+  .line-height-#{$size} {
+    line-height: $value;
+  }
+}
+
+@each $size,
+$value in $value-sizes {
+  .min-height-#{$size} {
+    min-height: $value;
+  }
+}
+
+.height-fit-content {
+  height: fit-content !important;
+}

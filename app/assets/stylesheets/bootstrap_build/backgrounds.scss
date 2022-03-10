@@ -1,0 +1,13 @@
+@each $color,
+$value in $colors {
+  .bg-#{$color} {
+    background-color: $value !important;
+  }
+}
+
+@each $color,
+$value in $colors {
+  .bg-image-#{$color} {
+    background-image: linear-gradient($value, $value) !important;
+  }
+}

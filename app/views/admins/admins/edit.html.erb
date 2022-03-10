@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header p-10px text-end">
+    <button type="button" class="btn btn-yellow btn-save">Save</button>
+  </div>
+  <div class="admin-form-body">
+    <%= render 'form_update', url: admins_admin_path, method: :PUT %>
+  </div>
+</div>
+<script type="text/javascript">
+  $('.btn-save').click(function(){
+    $("#button-submit").click()
+  })
+</script>

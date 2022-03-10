@@ -1,0 +1,23 @@
+<% if @information%>
+  <div class="top-nav-admin-page">
+    <%= link_to 'Information', edit_admins_customer_path(information: true), remote: true%>
+    <%= link_to 'Payment Method', edit_admins_customer_path(payment: true), style:'color: #808080', remote: true%>
+  </div>
+  <div class="card-header p-10px text-end height-65px">
+    <%# <button type="button" class="btn btn-yellow btn-save">Save</button> %>
+  </div>
+  <div class="admin-form-body">
+    <%= render 'form_update_information', url: admins_customer_path, method: :PUT %>
+  </div>
+<% elsif @payment%>
+  <div class="top-nav-admin-page">
+    <%= link_to 'Information', edit_admins_customer_path(information: true), style:'color: #808080', remote: true%>
+    <%= link_to 'Payment Method', edit_admins_customer_path(payment: true), remote: true%>
+  </div>
+  <div class="card-header p-10px text-end height-65px">
+    <%# <button type="button" class="btn btn-yellow btn-save">Save</button> %>
+  </div>
+  <div class="admin-form-body">
+    <%= render 'form_update_payment', url: admins_customer_path, method: :PUT %>
+  </div>
+<% end%>

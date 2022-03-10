@@ -1,0 +1,13 @@
+@each $size,
+$value in $value-sizes {
+  .font-size-#{$size} {
+    font-size: $value;
+  }
+}
+
+@each $size,
+$value in $font-weights {
+  .font-weight-#{$size} {
+    font-weight: $value !important;
+  }
+}

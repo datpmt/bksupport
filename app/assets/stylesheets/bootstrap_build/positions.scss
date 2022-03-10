@@ -1,0 +1,16 @@
+@each $size,
+$value in $value-sizes {
+  .top-#{$size} {
+    top: $value;
+  }
+  .bottom-#{$size} {
+    bottom: $value;
+  }
+  .left-#{$size} {
+    left: $value;
+  }
+  .right-#{$size} {
+    right: $value;
+  }
+}
+

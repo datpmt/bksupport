@@ -1,0 +1,39 @@
+<div class="sign_in_form">
+  <div class="container" >
+    <div class="col-lg-5 col-md-7 col-12 m-auto">
+      <div class="text-center mb-40px">
+        <p class="mt-30px font-weight-700 font-size-22px">LOG IN</p>
+      </div>
+      <div class="">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="input-form">
+            <%= f.input :email,
+                        required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: { class: "form-control mb-20px pl-24px", placeholder: "Email" } %>
+            <%= f.input :password,
+                        label: false,
+                        required: false,
+                        input_html: { class: "form-control mb-20px pl-24px", placeholder: "Password" }%>
+            <div class="position-relative">
+              <%= image_tag('icons/eye-password-icon.svg', class: "position-absolute eye-position cursor-pointer", style:"top:-59px; right:30px", onclick: "showHidePass($(this), 'sign_in_cms');")%>
+              <%= image_tag('icons/hide-password-icon.svg', class: "position-absolute hide-position cursor-pointer d-none", style:"top:-65px; right:30px", onclick: "showHidePass($(this), 'sign_in_cms');")%>
+            </div>
+          </div>
+
+          <div class="remember mb-12px" id="intro_group">
+            <div class="forgot-password d-inline-block" style="float:right">
+              <%= link_to new_administrator_password_path, class: "text-decoration-none" do %>
+                <small class="font-size-16px color-black">Forgot password?</small>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-actions input-form" style="width:529px; margin: 0 auto">
+            <%= f.button :submit, "Log In", class: "btn btn-yellow color-white w-100 pl-0 font-weight-700", id: "button-submit" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

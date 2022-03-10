@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Demo" %></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : 'Artchild' %>">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%#= favicon_link_tag asset_path('icons/favicon.png') %>
+
+    <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="wrapper-admin bg-base" style="min-height: 100vh;">
+      <% if current_administrator.present? %>
+        <div class="fixed-left">
+          <div id="wrapper">
+            <div class="topbar">
+              <%= render 'admins/shared/navbar_custom' %>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <%= render 'admins/shared/messages' %>
+        <%= yield %>
+      <% end %>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+  $(document).ready(function(){
+    setTimeout(function() {
+      $('.success, .alert').fadeOut();
+    }, 10000);
+    var toggle_status = eval(localStorage.getItem('toggle'))
+    if (!toggle_status) {
+      toggle_status = localStorage.setItem('toggle', false)
+    }
+    toggleSidebar(toggle_status)
+
+    $('#sidebarToggle').click(function(){
+      toggle_status = !toggle_status
+      localStorage.setItem('toggle', toggle_status)
+      toggleSidebar(eval(toggle_status))
+    })
+    function toggleSidebar(toggle_status) {
+      if (toggle_status) {
+        $('body').addClass('sb-sidenav-toggled')
+        $('.side-icon').removeClass('d-none')
+        $('.artchild-logo').addClass('d-none')
+      } else {
+        $('body').removeClass('sb-sidenav-toggled')
+        $('.side-icon').addClass('d-none')
+        $('.artchild-logo').removeClass('d-none')
+      }
+    }
+  })
+</script>
+<%#= content_for :render_async %>

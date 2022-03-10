@@ -1,0 +1,29 @@
+@each $size,
+$value in $value-sizes {
+  .mt-#{$size} {
+    margin-top: $value;
+  }
+  .mb-#{$size} {
+    margin-bottom: $value;
+  }
+  .ml-#{$size} {
+    margin-left: $value;
+  }
+  .mr-#{$size} {
+    margin-right: $value;
+  }
+  .m-#{$size} {
+    margin: $value;
+  }
+  .my-#{$size} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+  .mx-#{$size} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+  .m-auto {
+    margin: auto;
+  }
+}

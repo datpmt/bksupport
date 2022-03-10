@@ -1,0 +1,230 @@
+$blue:              #3C84E7;
+$yellow:            #FFDD00;
+$red:               #E54C38;
+$red-opacity:       #FCD6DE;
+$black:             #000000;
+$white:             #FFFFFF;
+$orange:            #F99E27;
+$cyan:              #3bafda;
+$muted:             #f9f9f9;
+$base:              #FCFCF1;
+$base-opacity:      #e8f5f2;
+$expiring:          #F99E27;
+$expired:           #A70A0A;
+$incomplete:        #999999;
+$missing:           #54565B;
+$gray:              #D9E1E1;
+$light-blue:        #F4F6F6;
+$b-blue:            #009FFD;
+$light-black:       #2F2F2E;
+
+$colors: ();
+$colors: map-merge(
+  (
+    "blue":              $blue,
+    "yellow":            $yellow,
+    "red":               $red,
+    "black":             $black,
+    "white":             $white,
+    "orange":            $orange,
+    "cyan":              $cyan,
+    "muted":             $muted,
+    "base":              $base,
+    "base-opacity":      $base-opacity,
+    "expiring":          $expiring,
+    "expired":           $expired,
+    "incomplete":        $incomplete,
+    "missing":           $missing,
+    "gray":              $gray,
+    "light-blue":        $light-blue,
+    "current":           $base,
+    "b-blue":            $b-blue,
+    "light-black":       $light-black
+  ),
+  $colors
+);
+
+$_0px:    0px !important;
+$_1px:    1px !important;
+$_2px:    2px !important;
+$_3px:    3px !important;
+$_4px:    4px !important;
+$_5px:    5px !important;
+$_6px:    6px !important;
+$_7px:    7px !important;
+$_8px:    8px !important;
+$_9px:    9px !important;
+$_10px:   10px !important;
+$_11px:   11px !important;
+$_12px:   12px !important;
+$_13px:   13px !important;
+$_14px:   14px !important;
+$_15px:   15px !important;
+$_16px:   16px !important;
+$_17px:   17px !important;
+$_18px:   18px !important;
+$_19px:   19px !important;
+$_20px:   20px !important;
+$_21px:   21px !important;
+$_22px:   22px !important;
+$_23px:   23px !important;
+$_24px:   24px !important;
+$_25px:   25px !important;
+$_26px:   26px !important;
+$_27px:   27px !important;
+$_28px:   28px !important;
+$_29px:   29px !important;
+$_30px:   30px !important;
+$_31px:   31px !important;
+$_32px:   32px !important;
+$_33px:   33px !important;
+$_34px:   34px !important;
+$_35px:   35px !important;
+$_36px:   36px !important;
+$_37px:   37px !important;
+$_38px:   38px !important;
+$_39px:   39px !important;
+
+$_40px:   40px !important;
+$_43px:   43px !important;
+$_45px:   45px !important;
+$_48px:   48px !important;
+$_50px:   50px !important;
+$_54px:   54px !important;
+$_55px:   55px !important;
+$_56px:   56px !important;
+$_60px:   60px !important;
+$_62px:   62px !important;
+$_65px:   65px !important;
+$_66px:   66px !important;
+$_70px:   70px !important;
+$_74px:   74px !important;
+$_75px:   75px !important;
+$_80px:   80px !important;
+$_90px:   90px !important;
+$_95px:   95px !important;
+$_96px:   96px !important;
+$_100px:  100px !important;
+$_110px:  110px !important;
+$_120px:  120px !important;
+$_140px:  140px !important;
+$_150px:  150px !important;
+$_172px:  172px !important;
+$_180px:  180px !important;
+$_200px:  200px !important;
+$_300px:  300px !important;
+$_350px:  350px !important;
+$_380px:  380px !important;
+$_400px:  400px !important;
+$_420px:  420px !important;
+$_450px:  450px !important;
+$_470px:  470px !important;
+$_500px:  500px !important;
+$_540px:  540px !important;
+$_auto:  auto !important;
+
+$value-sizes: ();
+$value-sizes: map-merge(
+  (
+    "0px":    $_0px,
+    "1px":    $_1px,
+    "2px":    $_2px,
+    "3px":    $_3px,
+    "4px":    $_4px,
+    "5px":    $_5px,
+    "6px":    $_6px,
+    "7px":    $_7px,
+    "8px":    $_8px,
+    "9px":    $_9px,
+    "10px":   $_10px,
+    "11px":   $_11px,
+    "12px":   $_12px,
+    "13px":   $_13px,
+    "14px":   $_14px,
+    "15px":   $_15px,
+    "16px":   $_16px,
+    "17px":   $_17px,
+    "18px":   $_18px,
+    "19px":   $_19px,
+    "20px":   $_20px,
+    "21px":   $_21px,
+    "22px":   $_22px,
+    "23px":   $_23px,
+    "24px":   $_24px,
+    "25px":   $_25px,
+    "26px":   $_26px,
+    "27px":   $_27px,
+    "28px":   $_28px,
+    "29px":   $_29px,
+    "30px":   $_30px,
+    "31px":   $_31px,
+    "32px":   $_32px,
+    "33px":   $_33px,
+    "34px":   $_34px,
+    "35px":   $_35px,
+    "36px":   $_36px,
+    "37px":   $_37px,
+    "38px":   $_38px,
+    "39px":   $_39px,
+    "40px":   $_40px,
+    "43px":   $_43px,
+    "45px":   $_45px,
+    "48px":   $_48px,
+    "50px":   $_50px,
+    "54px":   $_54px,
+    "55px":   $_55px,
+    "56px":   $_56px,
+    "60px":   $_60px,
+    "62px":   $_62px,
+    "65px":   $_65px,
+    "66px":   $_66px,
+    "70px":   $_70px,
+    "74px":   $_74px,
+    "75px":   $_75px,
+    "80px":   $_80px,
+    "90px":   $_90px,
+    "95px":   $_95px,
+    "96px":   $_96px,
+    "100px":  $_100px,
+    "110px":  $_110px,
+    "120px":  $_120px,
+    "140px":  $_140px,
+    "150px":  $_150px,
+    "172px":  $_172px,
+    "180px":  $_180px,
+    "200px":  $_200px,
+    "300px":  $_300px,
+    "350px":  $_350px,
+    "380px":  $_380px,
+    "400px":  $_400px,
+    "420px":  $_420px,
+    "450px":  $_450px,
+    "470px":  $_470px,
+    "500px":  $_500px,
+    "540px":  $_540px,
+    "auto":  $_auto,
+  ),
+  $value-sizes
+);
+
+$font-weights: ();
+$font-weights: map-merge(
+  (
+    "100":    100,
+    "200":    200,
+    "300":    300,
+    "400":    400,
+    "500":    500,
+    "600":    600,
+    "700":    700,
+    "800":    800,
+    "900":    900
+  ),  
+  $font-weights
+);
+
+$default-radius: 5px;
+
+.cursor-pointer {
+  cursor: pointer;
+}

@@ -1,0 +1,49 @@
+@each $color,
+$value in $colors {
+  .border-#{$color} {
+    border-color: $value !important;
+  }
+  .border-top-#{$color} {
+    border-top-color: $value !important;
+  }
+  .border-bottom-#{$color} {
+    border-bottom-color: $value !important;
+  }
+  .border-left-#{$color} {
+    border-left-color: $value !important;
+  }
+  .border-right-#{$color} {
+    border-right-color: $value !important;
+  }
+}
+
+@each $color,
+$value in $theme-colors {
+  .border-#{$color} {
+    border-color: $value !important;
+  }
+}
+
+@each $size,
+$value in $value-sizes {
+  .radius-#{$size} {
+    border-radius: $value;
+  }
+}
+
+
+@each $size,
+$value in $value-sizes {
+  .radius-top-left-#{$size} {
+    border-top-left-radius: $value;
+  }
+  .radius-top-right-#{$size} {
+    border-top-right-radius: $value;
+  }
+  .radius-bot-left-#{$size} {
+    border-bottom-left-radius: $value;
+  }
+  .radius-bot-right-#{$size} {
+    border-bottom-right-radius: $value;
+  }
+}

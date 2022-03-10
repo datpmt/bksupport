@@ -1,0 +1,22 @@
+#payment {
+  .field {
+    background: transparent;
+    box-sizing: border-box;
+    border: 1px solid #A7A7A7 !important;
+    color: #32315E;
+    outline: none;
+    flex: 1;
+    cursor: text;
+  }
+  #card-number-element, #card-cvc-element, #card-expiry-element{
+    margin-bottom: 18px;
+    padding: 0 10px;
+  }
+}
+.address-in-payment{
+  color: #A7A7A7;
+  font-size: 14px;
+  p{
+    margin: 0;
+  }
+}
