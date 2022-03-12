@@ -24,4 +24,21 @@ module ApplicationHelper
 		request.original_url.include?(name) ? "bg-color-active" : "bg-base"
 	end
 
+	def discount(price, sale_off)
+		price.to_i*(100-sale_off.to_i)*10
+	end
+
+	def show_price(price)
+		num = price.to_i
+    n=0
+    while num/1000 > 1 do
+      n+=1
+      num=num/1000
+    end
+    while n > 0
+      price.insert(price.length - n*3, ".")
+      n-=1
+    end
+    price
+	end
 end

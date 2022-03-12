@@ -47,7 +47,7 @@
                 <% i += 1 %>
                 <th scope="row" class="pl-38px"><%= 1000 + product.id %></th>
                 <td><%= product.name %></td>
-                <td><%= product.price %> vnd</td>
+                <td><%= show_price(product.price) %> vnd</td>
                 <td><%= product.quantity %></td>
                 <td><%= product.city.name %></td>
                 <td><%= product.short_des %></td>

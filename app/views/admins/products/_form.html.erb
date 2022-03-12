@@ -10,7 +10,7 @@
       <label>Price * (vnd)</label>
       <%= f.input :price,
         required: true, label: false,
-        input_html: { class: "form-control" } %>
+        input_html: { class: "form-control", type: 'number' } %>
     </div>
     <div class="form-cms-input col-xxl-3">
       <label>Quantity *</label>
@@ -26,11 +26,11 @@
     </div>
   </div>
   <div class="form-inputs mb-10px form-cms row">
-      <div class="form-cms-input col-xxl-3">
+      <div class="form-cms-input col-xxl-6">
         <label>Short description *</label>
         <%= f.input :short_des,
           required: true, label: false,
-          input_html: { class: "form-control" } %>
+          input_html: { class: "form-control", style: 'max-width: 100%' } %>
       </div>
       <div class="form-cms-input col-xxl-3">
         <label>Sale off * (%)</label>

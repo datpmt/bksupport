@@ -28,20 +28,20 @@ class Admins::ProductsController < Admins::BaseController
 
   def create
     @product = Product.new(product_params)
-    if @product.save
-      if params[:photos].nil?
-        flash[:error] = "Images can't be blank!"
-        render :new
-      else
+    if params[:photos].nil?
+      flash[:error] = "Images can't be blank!"
+      render :new
+    else
+      if @product.save
         params[:photos]['photo'].each do |a|
           @photo = @product.photos.create!(:photo => a)
         end
         flash[:success] = 'Product created successful!'
         redirect_to admins_products_path
+      else
+        flash[:error] = 'Product created failed!'
+        render :new
       end
-    else
-      flash[:error] = 'Product created failed!'
-      render :new
     end
   end
 
