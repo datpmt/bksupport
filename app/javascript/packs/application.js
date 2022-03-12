@@ -9,7 +9,6 @@ import "./plugin/bootstrap.bundle"
 import $ from 'jquery'
 
 import "./plugin/password.js"
-import "./plugin/bootstrap.bundle"
 require("bootstrap")
 require("@popperjs/core")
 Rails.start()

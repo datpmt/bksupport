@@ -33,3 +33,10 @@
   height: 56px;
   margin: 0 auto;
 }
+
+.simple_form.new_administrator {
+  span.error {
+    color: red;
+    padding-left: 5px;
+  }
+}

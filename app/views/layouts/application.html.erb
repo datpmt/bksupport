@@ -1,20 +1,145 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DSVN</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>
+      <% if controller_name == 'home' %>
+        <% if action_name == 'index' %>
+          Trang chủ
+        <% elsif action_name == 'about_us' %>
+          Chúng tôi
+        <% elsif action_name == 'contact' %>
+          Liên hệ
+        <% elsif action_name == 'term' %>
+          Điều khoản
+        <% elsif action_name == 'product_detail' %>
+          Sản phẩm
+        <% end %>
+      <% else %>
+        Shopping
+      <% end %>
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/a0556251ee.js" crossorigin="anonymous"></script>
+    <%= favicon_link_tag asset_path('logo.png') %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <div class="container-fluid">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <div class="wcrap">
+      <!-- section header -->
+      <section class="header container">
+        <div class="menu py-4">
+          <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <%= image_tag 'logo.png', alt:"logo" %>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMenu">
+              <ul class="navbar-nav mr-auto ml-auto">
+                <li class="nav-item">
+                  <%= link_to 'Trang chủ', root_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Mua sắm', shopping_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Chúng tôi', about_us_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" id="navbarDropdown">Danh mục</a>
+                  <div class="dropdown-menu dropdown-category row text-center">
+                    <% Region.all.each do |region| %>
+                      <div class="col-md-2">
+                        <div class="title">
+                          <h5><%= region.name %></h5>
+                        </div>
+                        <ul>
+                          <% City.where(region_id: region.id).each do |city| %>
+                            <li><a href="#"><%= city.name %></a></li>
+                          <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Liên hệ', contact_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Điều khoản', term_path, class: 'nav-link' %>
+                </li>
+              </ul>
+              <div class="info">
+                <%= link_to my_acc_path, style: 'text-decoration: none' do %>
+                  <i class="fas fa-user"></i>
+                <% end %>
+                <%= link_to cart_path do %>
+                  <i class="fas fa-shopping-cart"></i>
+                <% end %>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="category search justify-content-between my-3 mx-0">
+          <div class="row container align-items-center p-0">
+            <div class="col-md-6 col-sm-12 mr-auto">
+              <div class="category">
+                <div class="nav-item dropdown w-100">
+                  <a class="nav-link dropdown-toggle p-3" href="#" id="navbarCategory" role="button" data-toggle="dropdown"> <i class="fas fa-bars mr-30px"></i>Tất cả khu vực</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarCategory">
+                    <% Region.all.each do |region| %>
+                      <a class="dropdown-item" href="#"><%= region.name %></a>
+                      <% if Region.last != region %>
+                        <div class="dropdown-divider"></div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="search">
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2 d-inline-block" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-success my-2 my-sm-0" type="submit" style='float: right'>Tìm kiếm</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
     <%= yield %>
+    <!-- section footer -->
+    <section class="footer">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-md-6 text-left">
+            <h2 class="title">Cửa hàng đặc sản Việt Nam</h2>
+            <p class="address"><i class="fas fa-map-marker-alt mr-20px"></i>Địa chỉ: 123-45 BK tpHCM</p>
+            <p class="phone"><i class="fas fa-phone mr-20px"></i>Điện thoại: +84 1234568789</p>
+            <p class="email"><i class="fas fa-envelope mr-20px"></i>Email: <span>info@gmail.com</span></p>
+          </div>
+          <div class="col-md-6">
+            <div class="title">Tham gia kênh thông tin điện tử ngay</div>
+            <div class="subtitle">Nhận E-mail cập nhật tin tức mới nhất về shop và các ưu đãi đặc biệt.</div>
+            <form class="d-flex justify-content-center align-items-center">
+              <input type=" email" class="form-control" id="email " placeholder="Email">
+              <button type="submit " class="btn btn-warning mt-2 ">Subscribe</button>
+            </form>
+            <div class="logo ">
+              <a href="# "><i class="fab fa-facebook-square "></i></a>
+              <a href="# "><i class="fab fa-instagram "></i></a>
+              <a href="# "><i class="fab fa-twitter "></i></a>
+              <a href="# "><i class="fab fa-youtube "></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end section footer -->
   </body>
 </html>

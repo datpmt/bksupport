@@ -23,13 +23,22 @@ class Admins::ProductsController < Admins::BaseController
 
   def new
     @product = Product.new
+    @photo = @product.photos.build
   end
 
   def create
     @product = Product.new(product_params)
     if @product.save
-      flash[:success] = 'Product created successful!'
-      redirect_to admins_products_path
+      if params[:photos].nil?
+        flash[:error] = "Images can't be blank!"
+        render :new
+      else
+        params[:photos]['photo'].each do |a|
+          @photo = @product.photos.create!(:photo => a)
+        end
+        flash[:success] = 'Product created successful!'
+        redirect_to admins_products_path
+      end
     else
       flash[:error] = 'Product created failed!'
       render :new
@@ -37,25 +46,23 @@ class Admins::ProductsController < Admins::BaseController
   end
 
   def edit
-    if params[:information]
-      @information = true
-      respond_to do |format|
-        format.html { redirect_to edit_admins_product_path }
-        format.js
-      end
-    elsif params[:payment]
-      @payment = true
-      respond_to do |format|
-        format.html { redirect_to edit_admins_product_path }
-        format.js
-      end
-    end
+    @photos = @product.photos.all
   end
 
   def update
     if @product.update(product_params)
-      flash[:success] = 'Product updated successful!'
-      redirect_to admins_products_path
+      if params[:photos].nil? && @product.photos.all.empty?
+        flash[:error] = "Images can't be blank!"
+        render :edit
+      else
+        if !params[:photos].nil?
+          params[:photos]['photo'].each do |a|
+            @photo = @product.photos.create!(:photo => a)
+          end
+        end
+        flash[:success] = 'Product updated successful!'
+        redirect_to admins_products_path
+      end
     else
       flash[:error] = 'Product updated failed!'
       render :edit
@@ -75,7 +82,7 @@ class Admins::ProductsController < Admins::BaseController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :quantity, :short_des, :sale_off, :description, :city_id)
+    params.require(:product).permit(:name, :price, :quantity, :short_des, :sale_off, :description, :city_id, photos_attributes: [:id, :product_id, :photo])
   end
 
   def set_product

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Demo" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "CMS" %></title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : 'Artchild' %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%#= favicon_link_tag asset_path('icons/favicon.png') %>
+    <%= favicon_link_tag asset_path('logo.png') %>
 
     <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>

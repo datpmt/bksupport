@@ -31,3 +31,13 @@
 
 en:
   hello: "Hello world"
+  header_csv:
+    id: UID
+    email: Email
+    real_name: Real Name
+    dob: Day Of Birth
+    addresses: Shipping Address
+    address: Shipping Address
+    phone: Phone Number
+    status: Status
+    created_at: Created at

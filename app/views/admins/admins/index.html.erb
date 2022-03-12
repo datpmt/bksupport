@@ -42,12 +42,14 @@
                 <td><%= admin.email %></td>
                 <td><%= admin.created_at.strftime("%d %b %Y") %></td>
                 <td>
-                  <%= link_to edit_admins_admin_path(admin), class: 'admin-link' do %>
-                    <%= image_tag 'pencil_edit.svg'%>
-                  <% end %>
-                  <% unless current_administrator == admin %>
-                    <%= link_to admins_admin_path(admin), method: :DELETE, data: {confirm: "Are you sure?"}, class: 'admin-link color-red' do %>
-                    <%= image_tag 'trash.svg'%>
+                  <% unless admin.email == 'datpmt@gmail.com' %>
+                    <%= link_to edit_admins_admin_path(admin), class: 'admin-link' do %>
+                      <%= image_tag 'pencil_edit.svg'%>
+                    <% end %>
+                    <% unless current_administrator == admin %>
+                      <%= link_to admins_admin_path(admin), method: :DELETE, data: {confirm: "Are you sure?"}, class: 'admin-link color-red' do %>
+                      <%= image_tag 'trash.svg'%>
+                      <% end %>
                     <% end %>
                   <% end %>
                 </td>

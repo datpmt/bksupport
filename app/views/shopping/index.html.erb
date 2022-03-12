@@ -1,0 +1,93 @@
+<section class="path">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+      </div>
+      <div class="col-md-3">
+        <!-- Example single danger button -->
+        <div class="btn-group" style="float: right">
+          <button type="button" class="btn btn-warning dropdown-toggle px-3" data-toggle="dropdown">Phân loại</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Giá từ thấp đến cao</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Giá từ cap đến thấp</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Đặc sản yêu thích</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section path -->
+<!-- section shop-menu -->
+<section class="shop-menu">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 menu-left">
+        <div class="type-of-fruits">
+          <h2 class="titlte border-bottom">Khu vực</h2>
+          <div class="list-item p-4">
+            <ul>
+              <% Region.all.each do |region| %>
+                <li><a href="#"><%= region.name %></a></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 menu-right">
+        <div class="title">
+          <h2 class="border-bottom">Đặc sản Việt Nam</h2>
+        </div>
+        <div class="row">
+          <% [1, 2, 3, 4, 5, 6, 7,8, 9].each do %>
+            <div class="col-md-4">
+              <%= link_to '/product_detail/1', style: 'text-decoration: none; color: black' do %>
+                <div class="card text-center my-2 px-0 d-flex align-items-center">
+                  <%= image_tag 'mam.jpg', class: 'w-100'%>
+                  <div class="card-name font-size-20px font-weight-700 mt-20px">Mắm mực Hai Phượng</div>
+                  <% end %>
+                  <div class="card-price font-size-18px mt-10px">80.000 vnd</div>
+                  <div class="add">
+                    <button class='btn-minus' onclick="decrement()">-</button>
+                    <input id='demoInput' type='number' min='1' max='100' value='1' style= 'border: 1px solid #d9d9d9; text-align: center;'>
+                    <button class='btn-plus' onclick="increment()">+</button>
+                  </div>
+                  <div class="view my-10px">
+                    <button type="submit" class="btn btn-add2cart">Thêm vào giỏ hàng</button>
+                  </div>
+                </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="pagination mt-3">
+          <nav aria-label="...">
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active">
+                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section shop menu -->
+<script>
+  function increment() {
+     document.getElementById('demoInput').stepUp();
+  }
+  function decrement() {
+     document.getElementById('demoInput').stepDown();
+  }
+</script>

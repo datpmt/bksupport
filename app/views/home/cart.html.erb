@@ -1,0 +1,125 @@
+<section class="container">
+  <div class="row">
+    <div class="col-12 col-xl-8 mb-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text-center">Sản phẩm</th>
+            <th class="text-center"></th>
+            <th class="text-center">Giá</th>
+            <th class="text-center">Số lượng</th>
+            <th>Tổng</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="product-thumbnail text-center">
+              <a href="#"><img style="width: 100px;" src="../images/chanhvang.jpg" class="" alt="san pham"></a>
+            </td>
+            <td>
+              <div class="cart-detail">Bún tôm đặc sản Bình Dương</div>
+            </td>
+            <td class="text-center">
+              <div style="width:80px">12.500VNĐ </div>
+            </td>
+            <td class="product-quantity" data-title="Quantity">
+              <div class="input-group"> <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]"> <i class="fa fa-minus"></i> </button>
+                </span>
+                <input type="text" name="quant[1]" class="form-control input-number" value="4" min="0" max="10">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]"> <i class="fa fa-plus"></i> </button>
+                </span> </div>
+            </td>
+            <td>
+              <div style="width:100px">
+                50.000VNĐ</div>
+            </td>
+            <td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+          </tr>
+          <tr>
+            <td class="product-thumbnail text-center">
+              <a href="#"><img style="width: 100px;" src="../images/sr.jpg" class="" alt=""></a>
+            </td>
+            <td>Bún tôm đặc sản Bình Dương</td>
+            <td class="text-center">125.000VNĐ </td>
+            <td class="product-quantity" data-title="Quantity">
+              <div class="input-group"> <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[3]"> <i class="fa fa-minus"></i> </button>
+                </span>
+                <input type="text" name="quant[3]" class="form-control input-number" value="1" min="0" max="10">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[3]"> <i class="fa fa-plus"></i> </button>
+                </span> </div>
+            </td>
+            <td>125.000VNĐ</td>
+            <td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+          </tr>
+          <tr>
+            <td class="product-thumbnail text-center">
+              <a href="#"><img style="width: 100px;" src="../images/oi.jpg" class="" alt="san pham"></a>
+            </td>
+            <td>
+              <div class="cart-detail">Bún tôm đặc sản Bình Dương</div>
+            </td>
+            <td class="text-center">
+              <div style="width:80px">10.500VNĐ </div>
+            </td>
+            <td class="product-quantity" data-title="Quantity">
+              <div class="input-group"> <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]"> <i class="fa fa-minus"></i> </button>
+                </span>
+                <input type="text" name="quant[1]" class="form-control input-number" value="4" min="0" max="10">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]"> <i class="fa fa-plus"></i> </button>
+                </span> </div>
+            </td>
+            <td>
+              <div style="width:100px">
+                42.000VNĐ</div>
+            </td>
+            <td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <table width="100%" class="coupon">
+                <tbody>
+                  <tr>
+                    <td valign="top" class="text-right"><button><a href="cart.html" class="btn cart" value="">Cập nhật giỏ hàng</a></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-12 col-xl-4 mb-5">
+      <table class="table table-borderless mb-0">
+        <tbody>
+          <tr>
+            <td>Tổng giá sản phẩm</td>
+            <td class="text-right">217.000VNĐ</td>
+          </tr>
+          <tr>
+            <td>
+              <h5>Giao hàng giá rẻ</h5>
+            </td>
+            <td class="text-right">21.000VNĐ</td>
+          </tr>
+          <tr>
+            <td>
+              <h5>Tổng thanh toán</h5>
+            </td>
+            <td class="text-right">238.000VNĐ</td>
+          </tr>
+        </tbody>
+      </table>
+      <button>
+        <%= link_to 'Thanh toán', checkout_path, class:"btn cart w-100" %>
+      </button>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</section>

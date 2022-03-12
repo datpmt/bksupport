@@ -41,12 +41,14 @@ class Admins::AdminsController < Admins::BaseController
   end
 
   def update
-    if @admin.update(admin_params)
-      flash[:success] = "Admin updated successful!"
-      redirect_to admins_admins_path
-    else
-      flash[:error] = "Admin updated failed!"
-      render :edit
+    if params[:administrator][:email] != 'datpmt@gmail.com'
+      if @admin.update(admin_params)
+        flash[:success] = "Admin updated successful!"
+        redirect_to admins_admins_path
+      else
+        flash[:error] = "Admin updated failed!"
+        render :edit
+      end
     end
   end
 

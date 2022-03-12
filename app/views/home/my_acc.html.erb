@@ -1,0 +1,152 @@
+        <!-- section information -->
+<section class="information">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 infor-element p-3 my-5 text-center">
+        <i class="fas fa-sign-out-alt infor-icon"></i>
+        <div class="content">
+          <a href="#" class="text-warning">contact@gmail.com</a>
+          <p>? <a href="login.html">Đăng xuất</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 infor-element p-3 my-5 text-center">
+        <i class="fas fa-headset infor-icon"></i>
+        <div class="content">
+          <a href="#" class="text-warning">Cần hỗ trợ?</a>
+          <p><a href="FAQ.html">Dịch vụ chăm sóc khách hàng tại admin@srgit.com</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 infor-element p-3 my-5 text-center">
+        <i class="fas fa-envelope-open-text infor-icon"></i>
+        <div class="content">
+          <a href="#" class="text-warning">E-mail tại</a>
+          <p><a href="contact.html">contact@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 infor-element p-3 my-5 text-center">
+        <i class="fas fa-shopping-cart infor-icon"></i>
+        <div class="content">
+          <div class="btn btn-outline-success px-4 mt-2"><%= link_to 'Giỏ hàng', cart_path %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section information -->
+<!-- section more infor-->
+<section class="more-infor my-5">
+  <div class="container">
+    <div id="row">
+      <div class="col-md-12">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header text-center" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Đặt hàng
+                </button>
+              </h5>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header text-center" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Thông tin tài khoản
+                </button>
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <div class="title border-bottom">
+              <h1>Các đặt hàng</h1>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Thứ tự</th>
+                  <th scope="col">Ngày</th>
+                  <th scope="col">Trạng thái</th>
+                  <th scope="col">Tổng</th>
+                  <th scope="col">Hoạt động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>10-05-2018</td>
+                  <td>Đang tiến hành</td>
+                  <td>$25.00 cho 1 vật phẩm</td>
+                  <td>
+                    <div class="btn btn-warning px-2">Xem</div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>10-05-2018</td>
+                  <td>Đang tiến hành</td>
+                  <td>$25.00 cho 1 vật phẩm</td>
+                  <td>
+                    <div class="btn btn-warning px-2">Xem</div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>10-05-2018</td>
+                  <td>Đang tiến hành</td>
+                  <td>$25.00 cho 1 vật phẩm</td>
+                  <td>
+                    <div class="btn btn-warning px-2">Xem</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            <form class="card p-5 m-5 mx-auto bg-light">
+              <div class="title text-center">
+                <h1>Cập nhật</h1>
+              </div>
+              <div class="form-group">
+                <label for="Name">Tên</label>
+                <input type="text" class="form-control" id="Name" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <label for="email">Địa chỉ Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">Chúng tôi sẽ không để lộ Email của bạn cho bất kì ai.</small>
+              </div>
+              <div class="form-group">
+                <label for="Password">Mật khẩu</label>
+                <input type="password" class="form-control" id="Password" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-warning mt-2">Cập nhật</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section more infor -->
