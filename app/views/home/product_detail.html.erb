@@ -56,7 +56,7 @@
         <div class="col-md-6 col-6 text-right">
           <div class="col align-self-end">
             <div class="price-css" style="text-decoration: line-through;"><span><%= show_price(product.price) %> vnd</span></div>
-            <span class="dis-price"><%= discount(product.price, product.sale_off)%> vnd</span>
+            <span class="dis-price"><%= show_price(discount(product.price, product.sale_off).to_s)%> vnd</span>
           </div>
         </div>
       </div>
