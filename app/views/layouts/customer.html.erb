@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      <% if params['controller'] == 'customers/auths/sessions' %>
+        Đăng nhập
+      <% elsif params['controller'] == 'customers/auths/registrations' %>
+        Đăng ký
+      <% elsif params['controller'] == 'customers/auths/passwords' %>
+        <% if action_name == 'edit' %>
+          Thay đổi mật khẩu
+        <% else %>
+          Quên mật khẩu
+        <% end %>
+      <% end %>
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/a0556251ee.js" crossorigin="anonymous"></script>
+    <%= favicon_link_tag asset_path('logo.png') %>
+    <%= stylesheet_link_tag 'customer', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

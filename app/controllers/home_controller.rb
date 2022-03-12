@@ -16,11 +16,13 @@ class HomeController < ActionController::Base
   end
 
   def my_acc
+    authenticate_customer!
   end
 
   def cart
   end
 
   def checkout
+    authenticate_customer!
   end
 end

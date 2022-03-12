@@ -73,6 +73,14 @@
                 </li>
               </ul>
               <div class="info">
+                <% if current_customer %>
+                  Xin chào
+                  <%= current_customer.real_name %>
+                  |
+                  <%= link_to 'Đăng xuất', destroy_customer_session_path, method: :delete %>
+                <% else %>
+                  <%= link_to 'Đăng nhập', new_customer_session_path %>
+                <% end %>
                 <%= link_to my_acc_path, style: 'text-decoration: none' do %>
                   <i class="fas fa-user"></i>
                 <% end %>
@@ -111,7 +119,6 @@
           </div>
         </div>
       </section>
-    </div>
     <%= yield %>
     <!-- section footer -->
     <section class="footer">
@@ -141,5 +148,6 @@
       </div>
     </section>
     <!-- end section footer -->
+    </div>
   </body>
 </html>

@@ -1,0 +1,23 @@
+<title>Change your password</title>
+<div class="user-sign-up">
+  <div class="container">
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "card p-5 m-5 mx-auto bg-light"}) do |f| %>
+      <div class="title text-center">
+        <h1>Change your password</h1>
+      </div>
+      <%= f.hidden_field :reset_password_token %>
+      <div class="form-group">
+        <label>Password</label>
+        <%= f.input :password, label: false, required: true, autofocus: true, placeholder: "Password", class: "form-control", autocomplete: "new-password"%>
+      </div>
+      <div class="form-group">
+        <label>Password Confirm</label>
+        <%= f.input :password_confirmation, label: false, required: true, autofocus: true, placeholder: "Password", class: "form-control", autocomplete: "new-password"%>
+      </div>
+      <button type="submit" class="btn btn-warning mt-2" style="height: 50px;font-size: 18px;" >RESET<% f.submit "RESET"%></button>
+      <div style="text-align:center" class="mt-4">
+        <%= render "customers/shared/links" %>
+      <div>
+    <% end %>
+  </div>
+</div>

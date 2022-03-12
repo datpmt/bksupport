@@ -1,0 +1,18 @@
+<title>Forgot password</title>
+<div class="user-sign-up">
+  <div class="container">
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "card p-5 m-5 mx-auto bg-light"}) do |f| %>
+      <div class="title text-center">
+        <h1>Forgot your password?</h1>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <%= f.input :email, label: false, required: true, autofocus: true, placeholder: "Email", class: "form-control"%>
+      </div>
+      <button type="submit" class="btn btn-warning mt-2" style="height: 50px;font-size: 18px;" >Submit<% f.submit "Login"%></button>
+      <div style="text-align:center" class="mt-4">
+        <%= render "customers/shared/links" %>
+      <div>
+    <% end %>
+  </div>
+</div>

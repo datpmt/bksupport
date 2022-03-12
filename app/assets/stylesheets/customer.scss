@@ -1,0 +1,35 @@
+@import "bootstrap/scss/bootstrap";
+@import "font_face";
+@import "font";
+@import "admin/*";
+@import "bootstrap_build/base";
+@import "bootstrap_build/*";
+
+.user-sign-up{
+  width: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  input{
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    -moz-appearance: none;
+    border-radius: 0.25rem;
+    height: 50px;
+  }
+  .invalid-feedback{
+    font-size: 15px !important;
+    color: red;
+    position: absolute;
+    width: auto;
+  }
+  .form-group{
+    position: relative;
+  }
+  span.error {
+    color: red !important;
+  }
+}

@@ -3,31 +3,18 @@
     <div class="col-xxl-6">
       <div class="row">
         <div class="form-cms-input col-md-6">
-          <label>Username*</label>
-          <%= f.input :username,
+          <label>Real Name</label>
+          <%= f.input :real_name,
                       required: true, label: false,
                       input_html: { class: "form-control" } %>
         </div>
         <div class="form-cms-input col-md-6">
-          <label>Real Name</label>
-          <%= f.input :realname,
-                      required: true, label: false,
-                      input_html: { class: "form-control" } %>
-        </div>
-        <div class="form-cms-input col-md-6 pt-43px">
           <label>Birthday</label>
-          <%= f.input :dob,
-                      required: true, label: false,
-                      input_html: { class: "form-control" } %>
-        </div>
-        <div class="form-cms-input col-md-6 pt-43px">
-          <label>ZIP code</label>
-          <%= f.input :zipcode,
-                      required: true, label: false,
-                      input_html: { class: "form-control" } %>
+          <input class="form-control" value="<%= (Customer.find(params[:id]).dob.strftime("%d %b %Y")) %>">
         </div>
 
         <div class="pt-43px pr-20px col-xxl-12">
+          <label>Address</label>
           <%= f.input :address,
                       required: true, label: false,
                       input_html: { class: "form-control cms-input-address" } %>
@@ -47,18 +34,6 @@
           <%= f.input :phone,
                       required: true, label: false,
                       input_html: { class: "form-control" } %>
-        </div>
-        <div class="form-cms-input col-md-6 pt-43px">
-          <label>Country</label>
-          <%= f.input :country, as: :string,
-                      required: true, label: false,
-                      input_html: { class: "form-control" } %>
-        </div>
-        <div class="form-cms-input col-md-6 pt-43px">
-          <label>Status</label>
-          <%= f.input :status, as: :select, collection: [['Available', 'available'], ['Disable', 'disable']], required: true,
-              autofocus: true, label: false,
-              input_html: { class: "form-control" } %>
         </div>
       </div>
     </div>

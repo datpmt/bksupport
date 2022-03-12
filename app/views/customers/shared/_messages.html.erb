@@ -1,0 +1,7 @@
+<% flash.each do |key, value| %>
+  <% if !value.nil? %>
+    <div class="alert alert-<%= key == 'notice' ? 'success' : key %> p-0 ml-40px color-red font-size-14px">
+      <%= value %>
+    </div>
+  <% end %>
+<% end %>

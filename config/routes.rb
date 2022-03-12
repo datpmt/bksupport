@@ -8,7 +8,14 @@ Rails.application.routes.draw do
   get 'cart', to: 'home#cart'
   get 'checkout', to: 'home#checkout'
   get 'product_detail/:id', to: 'home#product_detail'
-  devise_for :customers
+
+  devise_for :customers, controllers: {
+    sessions: 'customers/auths/sessions',
+    registrations: 'customers/auths/registrations',
+    confirmations: 'customers/auths/confirmations',
+    passwords: 'customers/auths/passwords'
+  }
+
   devise_for :administrators, controllers: {
     sessions: 'admins/auths/sessions',
     passwords: 'admins/auths/passwords'
