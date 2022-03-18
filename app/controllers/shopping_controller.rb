@@ -26,11 +26,11 @@ class ShoppingController < ActionController::Base
     session[:cart] ||= []
     if params[:item_id] != nil
       if session[:cart].empty?
-        p "empty"
-        session[:cart].push [
-          id:       params[:item_id],
-          quantity: params[:quantity]
-        ]
+        if session[:cart].push([id: params[:item_id], quantity: params[:quantity]])
+          p "push thanh cong"
+        else
+          p "push khong thanh cong"
+        end
       else
         # check trung
         session[:cart].each do |cart|
@@ -38,11 +38,11 @@ class ShoppingController < ActionController::Base
             return cart[0]["quantity"] = params[:quantity].to_i + cart[0]["quantity"].to_i
           end
         end
-        p "khong empty"
-        session[:cart].push [
-          id:       params[:item_id],
-          quantity: params[:quantity]
-        ]
+        if session[:cart].push([id: params[:item_id], quantity: params[:quantity]])
+          p "push thanh cong"
+        else
+          p "push khong thanh cong"
+        end
       end
     end
   end
