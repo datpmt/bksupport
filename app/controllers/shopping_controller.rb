@@ -22,11 +22,13 @@ class ShoppingController < ActionController::Base
 
   def cart
     # session[:cart] ||= []
+    p params
     if session[:cart] == nil
       session[:cart] = []
     end
     if params[:item_id] != nil
       if session[:cart].empty?
+        p "empty"
         session[:cart] << [
           id:       params[:item_id],
           quantity: params[:quantity]
@@ -38,6 +40,7 @@ class ShoppingController < ActionController::Base
             return cart[0]["quantity"] = params[:quantity].to_i + cart[0]["quantity"].to_i
           end
         end
+        p "khong empty"
         session[:cart] << [
           id:       params[:item_id],
           quantity: params[:quantity]
