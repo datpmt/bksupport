@@ -12,23 +12,23 @@
         </tr>
       </thead>
       <tbody>
-        <%= session[:cart].each do |cart| %>
+        <% session[:cart].each do |cart| %>
           <% product = Product.find(cart[0]["id"]) %>
           <% if cart[0]["quantity"] != 0 %>
             <tr>
-              <td class="text-center">
-                <span class="cart-detail"><%= product.name %></span>
+              <td class="position-relative text-center">
+                <div class="cart-detail"><%= product.name %></div>
               </td>
               <td class="product-thumbnail text-center">
                 <%= link_to "product_detail/#{product.id}", class: 'w-100 p-10px' do %>
                   <%= cl_image_tag product.photos.first.photo_url, style:"width: 100px", secure: true %>
                 <% end %>
               </td>
-              <td class="text-center">
-                <span style="width:80px"><%= number_with_delimiter(discount(product)) %> vnd</span>
+              <td class="position-relative text-center">
+                <div class="cart-detail" style="width:80px"><%= number_with_delimiter(discount(product)) %> vnd</div>
               </td>
-              <td class="product-quantity" data-title="Quantity">
-                <div class="add-to-cart" style="width: fit-content; margin: auto;">
+              <td class="product-quantity position-relative" data-title="Quantity">
+                <div class="add-to-cart" style="    position: absolute; top: 50%; transform: translateY(-50%);">
                   <%= link_to edit_cart_path(action_edit: "minus", item_id: product.id), style:"text-decoration: none;", remote: true do %>
                     <button class='btn-minus'>-</button>
                   <% end %>
@@ -38,8 +38,8 @@
                   <% end %>
                 </div>
               </td>
-              <td>
-                <span style="width:100px"><%= number_with_delimiter(cart[0]["quantity"].to_i*discount(product).to_i) %> vnd</span>
+              <td class="position-relative text-center">
+                <div class="cart-detail" style="width:100px"><%= number_with_delimiter(cart[0]["quantity"].to_i*discount(product).to_i) %> vnd</div>
               </td>
               <td>
                 <%= link_to edit_cart_path(action_edit: "delete", item_id: product.id), style:"text-decoration: none;", remote: true do %>
