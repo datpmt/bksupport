@@ -19,9 +19,7 @@
               <button class='btn-plus' onclick="increment(<%= pr.id %>)">+</button>
             </div>
             <div class="view my-10px">
-              <%= link_to shopping_path, method: :post do %>
-                <button type="submit" class="btn btn-add2cart" onclick="addToCart(<%= pr.id %>)" data-bs-toggle="modal" data-bs-target="#addToCartModal">Thêm vào giỏ hàng</button>
-              <% end%>
+              <button class="btn btn-add2cart" onclick="addToCart(<%= pr.id %>)" data-bs-toggle="modal" data-bs-target="#addToCartModal">Thêm vào giỏ hàng</button>
             </div>
           </div>
         </div>
