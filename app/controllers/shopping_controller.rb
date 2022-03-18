@@ -25,10 +25,7 @@ class ShoppingController < ActionController::Base
     if params[:item_id] != nil
       new_cart = [id: params[:item_id], quantity: params[:quantity]]
       if session[:cart].empty?
-        tmp = session[:cart]
-        while session[:cart] == tmp
-          session[:cart].push(new_cart)
-        end
+        session[:cart].push(new_cart)
       else
         # check trung
         session[:cart].each do |cart|
@@ -37,10 +34,6 @@ class ShoppingController < ActionController::Base
           end
         end
         session[:cart].push(new_cart)
-        tmp = session[:cart]
-        while session[:cart] == tmp
-          session[:cart].push(new_cart)
-        end
       end
     end
   end
