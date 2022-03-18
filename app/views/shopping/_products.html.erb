@@ -6,9 +6,9 @@
     <% @products.each do |pr|%>
       <div class="col-md-4 mb-30px">
         <div class="card text-center my-2 px-0 d-flex align-items-center h-100">
-          <%= link_to "product_detail/#{pr.id}", class: 'w-100 p-10px' do %>
-            <%= cl_image_tag pr.photos.first.photo_url, class: 'w-100'%>
-          <% end %>
+          <%#= link_to "product_detail/#{pr.id}", class: 'w-100 p-10px' do %>
+            <%#= cl_image_tag pr.photos.first.photo_url, class: 'w-100'%>
+          <%# end %>
           <div class="mt-auto">
             <%= link_to pr.name, "product_detail/#{pr.id}", class: 'card-name font-size-20px font-weight-700 mt-20px'%>
             <div class="price-css" style="text-decoration: line-through;"><span><%= number_with_delimiter(pr.price) %> vnd</span></div>

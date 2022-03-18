@@ -20,9 +20,9 @@
                 <span class="cart-detail"><%= product.name %></span>
               </td>
               <td class="product-thumbnail text-center">
-                <%= link_to "product_detail/#{product.id}", class: 'w-100 p-10px' do %>
-                  <%= cl_image_tag product.photos.first.photo_url, style:"width: 100px", secure: true %>
-                <% end %>
+                <%#= link_to "product_detail/#{product.id}", class: 'w-100 p-10px' do %>
+                  <%#= cl_image_tag product.photos.first.photo_url, style:"width: 100px", secure: true %>
+                <%# end %>
               </td>
               <td class="text-center">
                 <span style="width:80px"><%= number_with_delimiter(discount(product)) %> vnd</span>
