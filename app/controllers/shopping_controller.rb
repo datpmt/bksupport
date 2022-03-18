@@ -23,29 +23,25 @@ class ShoppingController < ActionController::Base
   def cart
     # session[:cart] ||= []
     p params
-    if session[:cart] == nil
-      session[:cart] = []
-    end
+    session[:cart] ||= []
     if params[:item_id] != nil
-      id_product        = params[:item_id]
-      quantity_product  = params[:quantity]
       if session[:cart].empty?
         p "empty"
-        session[:cart] << [
-          id:       id_product,
-          quantity: quantity_product
+        session[:cart].push [
+          id:       params[:item_id],
+          quantity: params[:quantity]
         ]
       else
         # check trung
         session[:cart].each do |cart|
-          if cart[0]["id"] == id_product
-            return cart[0]["quantity"] = quantity_product.to_i + cart[0]["quantity"].to_i
+          if cart[0]["id"] == params[:item_id]
+            return cart[0]["quantity"] = params[:quantity].to_i + cart[0]["quantity"].to_i
           end
         end
         p "khong empty"
-        session[:cart] << [
-          id:       id_product,
-          quantity: quantity_product
+        session[:cart].push [
+          id:       params[:item_id],
+          quantity: params[:quantity]
         ]
       end
     end
