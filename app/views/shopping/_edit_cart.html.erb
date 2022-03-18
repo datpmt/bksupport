@@ -21,7 +21,7 @@
               </td>
               <td class="product-thumbnail text-center">
                 <%= link_to "product_detail/#{product.id}", class: 'w-100 p-10px' do %>
-                  <%= image_tag product.photos.first.photo_url, style:"width: 100px"%>
+                  <%= cl_image_tag product.photos.first.photo_url, style:"width: 100px", secure: true %>
                 <% end %>
               </td>
               <td class="text-center">
