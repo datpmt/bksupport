@@ -7,18 +7,21 @@
       <div class="col-md-4 mb-30px">
         <div class="card text-center my-2 px-0 d-flex align-items-center h-100">
           <%= link_to "product_detail/#{pr.id}", class: 'w-100 p-10px' do %>
-            <%= image_tag pr.photos.first.photo_url, class: 'w-100'%>
+            <%= cl_image_tag pr.photos.first.photo_url, class: 'w-100'%>
           <% end %>
           <div class="mt-auto">
             <%= link_to pr.name, "product_detail/#{pr.id}", class: 'card-name font-size-20px font-weight-700 mt-20px'%>
-            <div class="card-price font-size-18px mt-10px"><%= number_with_delimiter(pr.price) %> vnd</div>
-            <div class="add">
-              <button class='btn-minus' onclick="decrement()">-</button>
-              <input id='demoInput' type='number' min='1' max='100' value='1' style= 'border: 1px solid #d9d9d9; text-align: center;'>
-              <button class='btn-plus' onclick="increment()">+</button>
+            <div class="price-css" style="text-decoration: line-through;"><span><%= number_with_delimiter(pr.price) %> vnd</span></div>
+            <span class="dis-price"><%= number_with_delimiter(discount(pr))%> vnd</span>
+            <div class="add-to-cart">
+              <button class='btn-minus' onclick="decrement(<%= pr.id %>)">-</button>
+              <input id='demoInput<%= pr.id %>' type='number' min='1' max='100' value='1' style= 'border: 1px solid #d9d9d9; text-align: center;'>
+              <button class='btn-plus' onclick="increment(<%= pr.id %>)">+</button>
             </div>
             <div class="view my-10px">
-              <button type="submit" class="btn btn-add2cart">Thêm vào giỏ hàng</button>
+              <%= link_to shopping_path, method: :post do %>
+                <button type="submit" class="btn btn-add2cart" onclick="addToCart(<%= pr.id %>)" data-bs-toggle="modal" data-bs-target="#addToCartModal">Thêm vào giỏ hàng</button>
+              <% end%>
             </div>
           </div>
         </div>
