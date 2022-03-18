@@ -4,15 +4,18 @@ development:
   api_secret: yY-0sXnUO14Ex9PY0HwODs5J6G4
   enhance_image_tag: true
   static_file_support: false
+  secure: true
 production:
   cloud_name: dacsanvietnam
   api_key: '877886197526953'
   api_secret: yY-0sXnUO14Ex9PY0HwODs5J6G4
   enhance_image_tag: true
   static_file_support: true
+  secure: true
 test:
   cloud_name: dacsanvietnam
   api_key: '877886197526953'
   api_secret: yY-0sXnUO14Ex9PY0HwODs5J6G4
   enhance_image_tag: true
   static_file_support: false
+  secure: true
