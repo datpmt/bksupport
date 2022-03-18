@@ -22,10 +22,10 @@ class ShoppingController < ActionController::Base
 
   def cart
     session[:cart] ||= []
-    new_cart = [id: params[:item_id], quantity: params[:quantity]]
-    p "new_cart = "
-    p new_cart
     if params[:item_id] != nil
+      new_cart = [id: params[:item_id], quantity: params[:quantity]]
+      p "new_cart = "
+      p new_cart
       if session[:cart].empty?
         session[:cart].push(new_cart)
       else
