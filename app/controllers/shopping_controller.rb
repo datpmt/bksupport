@@ -21,7 +21,10 @@ class ShoppingController < ActionController::Base
   end
 
   def cart
-    session[:cart] ||= []
+    # session[:cart] ||= []
+    if session[:cart] == nil
+      session[:cart] = []
+    end
     if params[:item_id] != nil
       if session[:cart].empty?
         session[:cart] << [
