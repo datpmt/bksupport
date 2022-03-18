@@ -12,11 +12,3 @@ require("@popperjs/core")
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-
-
-document.addEventListener("turbolinks:load", () => {
-  setTimeout(function() {
-    $('.success, .alert').fadeOut();
-  }, 10000);
-})
