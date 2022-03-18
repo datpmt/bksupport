@@ -19,4 +19,52 @@ class ShoppingController < ActionController::Base
       end
     end
   end
+
+  def cart
+    session[:cart] ||= []
+    if params[:item_id] != nil
+      if session[:cart].empty?
+        session[:cart] << [
+          id:       params[:item_id],
+          quantity: params[:quantity]
+        ]
+      else
+        # check trung
+        session[:cart].each do |cart|
+          if cart[0]["id"] == params[:item_id]
+            return cart[0]["quantity"] = params[:quantity].to_i + cart[0]["quantity"].to_i
+          end
+        end
+        session[:cart] << [
+          id:       params[:item_id],
+          quantity: params[:quantity]
+        ]
+      end
+    end
+  end
+
+  def edit_cart
+    if params[:action_edit]=='minus'
+      session[:cart].each do |cart|
+        if cart[0]["id"] == params[:item_id]
+          cart[0]["quantity"] = cart[0]["quantity"].to_i - 1
+        end
+      end
+    elsif params[:action_edit]=='plus'
+      session[:cart].each do |cart|
+        if cart[0]["id"] == params[:item_id]
+          cart[0]["quantity"] = cart[0]["quantity"].to_i + 1
+        end
+      end
+    else
+      session[:cart].each do |cart|
+        if cart[0]["id"] == params[:item_id]
+          cart[0]["quantity"] = 0
+        end
+      end
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
 end

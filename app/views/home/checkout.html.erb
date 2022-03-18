@@ -3,39 +3,45 @@
     <div class="col-12 col-xl-8">
       <h5 class="font-weight-bold">Chi tiết thanh toán</h5>
       <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Họ và tên</label>
+            <input type="text" class="form-control" value="<%= current_customer.real_name %>">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="text" class="form-control" value="<%= current_customer.phone %>">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Email</label>
+            <input disabled type="text" class="form-control" value="<%= current_customer.email %>">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Tổng hóa đơn</label>
+            <input disabled type="text" class="form-control" value="<%= number_with_delimiter(session[:total]) %> vnd">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Tỉnh / Thành phố </label>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Quận / Huyện</label>
+            <input type="text" class="form-control">
+          </div>
+        </div>
         <div class="col-md-12">
           <div class="form-group">
-            <label for="email">Họ và tên</label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="email">Tỉnh / Thành phố </label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="email">Quận / Huyện </label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="email">Mã vận chuyển </label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="email">Số điện thoại</label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="form-group">
-            <label for="email">Email </label>
+            <label>Địa chỉ cụ thể</label>
             <input type="text" class="form-control">
           </div>
         </div>
@@ -44,35 +50,20 @@
     <div class="col-12 col-xl-4">
       <div class="cart_totals">
         <div class="table-responsive">
-          <table class="table table-borderless mb-0">
-            <tbody>
-              <tr>
-                <td>Tổng giá sản phẩm</td>
-                <td class="text-right">217.000VNĐ</td>
-              </tr>
-              <tr>
-                <td>
-                  <h5>Giao hàng giá rẻ</h5>
-                </td>
-                <td class="text-right">21.000VNĐ</td>
-              </tr>
-              <tr>
-                <td>
-                  <h5>Tổng thanh toán</h5>
-                </td>
-                <td class="text-right">238.000VNĐ</td>
-              </tr>
-            </tbody>
-          </table>
+          <h5 class="font-weight-bold">Phương thức thanh toán</h5>
           <div class="ul-css m-0">
             <ul class="m-0 ml-3">
-              <input type="radio" name="thanhtoan" checked="checked">
+              <div>
+                <input type="radio" name="thanhtoan" checked="checked">
+                <label for="payment_method_bacs"> COD </label>
+              </div>
+              <input type="radio" name="thanhtoan" >
               <label for="payment_method_bacs"> Chuyển khoản ngân hàng </label>
               <div>
-                <p>Thực hiện thanh toán của bạn trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn đặt hàng của bạn làm tham chiếu thanh toán. Đơn đặt hàng của bạn sẽ không được chuyển cho đến khi tiền đã hết
+                <p>Thực hiện thanh toán của bạn trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn đặt hàng của bạn làm tham chiếu thanh toán. Đơn đặt hàng của bạn sẽ không được chuyển cho đến khi tiền đã gửi
                   trong tài khoản của chúng tôi.</p>
               </div>
-              <button> <a href="#" class="btn cart w-100"> Đặt hàng</a> </button>
+              <button> <a href="#" class="btn btn-add2cart"> Đặt hàng</a> </button>
             </ul>
           </div>
         </div>

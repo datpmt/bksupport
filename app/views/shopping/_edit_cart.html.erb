@@ -1,0 +1,88 @@
+<div class="row" id="cart">
+  <div class="col-xl-9 mb-4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">Sản phẩm</th>
+          <th class="text-center" style="width: 100px"></th>
+          <th class="text-center">Giá</th>
+          <th class="text-center" style="width: 225px">Số lượng</th>
+          <th>Tổng</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% session[:cart].each do |cart| %>
+          <% product = Product.find(cart[0]["id"]) %>
+          <% if cart[0]["quantity"] != 0 %>
+            <tr>
+              <td class="text-center">
+                <span class="cart-detail"><%= product.name %></span>
+              </td>
+              <td class="product-thumbnail text-center">
+                <%= link_to "product_detail/#{product.id}", class: 'w-100 p-10px' do %>
+                  <%= image_tag product.photos.first.photo_url, style:"width: 100px"%>
+                <% end %>
+              </td>
+              <td class="text-center">
+                <span style="width:80px"><%= number_with_delimiter(discount(product)) %> vnd</span>
+              </td>
+              <td class="product-quantity" data-title="Quantity">
+                <div class="add-to-cart" style="width: fit-content; margin: auto;">
+                  <%= link_to edit_cart_path(action_edit: "minus", item_id: product.id), style:"text-decoration: none;", remote: true do %>
+                    <button class='btn-minus'>-</button>
+                  <% end %>
+                  <input id='demoInput' type='number' min='1' value='<%= cart[0]["quantity"] %>' style= 'border: 1px solid #d9d9d9; text-align: center;'>
+                  <%= link_to edit_cart_path(action_edit: "plus", item_id: product.id), style:"text-decoration: none;", remote: true do %>
+                    <button class='btn-plus'>+</button>
+                  <% end %>
+                </div>
+              </td>
+              <td>
+                <span style="width:100px"><%= number_with_delimiter(cart[0]["quantity"].to_i*discount(product).to_i) %> vnd</span>
+              </td>
+              <td>
+                <%= link_to edit_cart_path(action_edit: "delete", item_id: product.id), style:"text-decoration: none;", remote: true do %>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-xl-3 mb-5">
+    <table class="table table-borderless mb-0">
+      <tbody>
+        <tr>
+          <td>Tổng giá sản phẩm</td>
+          <% @total = 0%>
+          <% session[:cart].each do |cart| %>
+            <% product = Product.find(cart[0]["id"]) %>
+            <% @total += cart[0]["quantity"].to_i*discount(product).to_i %>
+          <% end %>
+          <td class="text-right">
+            <%= number_with_delimiter(@total) %> vnd
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h5>Giao hàng giá rẻ</h5>
+          </td>
+          <td class="text-right"><%= number_with_delimiter(30000) %> vnd</td>
+        </tr>
+        <tr>
+          <td>
+            <h5>Tổng thanh toán</h5>
+          </td>
+          <td class="text-right"><%= number_with_delimiter(@total + 30000) %> vnd</td>
+          <% session[:total] = @total + 30000 %>
+        </tr>
+      </tbody>
+    </table>
+    <button>
+      <%= link_to 'Thanh toán', checkout_path, class:"btn btn-add2cart" %>
+    </button>
+  </div>
+</div>

@@ -11,7 +11,7 @@
           <% end %>
           <div class="mt-auto">
             <%= link_to pr.name, "product_detail/#{pr.id}", class: 'card-name font-size-20px font-weight-700 mt-20px'%>
-            <div class="card-price font-size-18px mt-10px"><%= show_price(pr.price) %> vnd</div>
+            <div class="card-price font-size-18px mt-10px"><%= number_with_delimiter(pr.price) %> vnd</div>
             <div class="add">
               <button class='btn-minus' onclick="decrement()">-</button>
               <input id='demoInput' type='number' min='1' max='100' value='1' style= 'border: 1px solid #d9d9d9; text-align: center;'>

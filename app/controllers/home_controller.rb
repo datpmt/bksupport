@@ -24,5 +24,8 @@ class HomeController < ActionController::Base
 
   def checkout
     authenticate_customer!
+    if session[:cart].nil? || session[:total] == 30000
+      redirect_to cart_path
+    end
   end
 end

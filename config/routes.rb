@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'home#index'
   get 'shopping', to: 'shopping#index'
+  get 'edit_cart', to: 'shopping#edit_cart'
+  post 'shopping', to: 'shopping#cart'
   get 'term', to: 'home#term'
   get 'about_us', to: 'home#about_us'
   get 'contact', to: 'home#contact'

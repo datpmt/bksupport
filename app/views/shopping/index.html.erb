@@ -49,14 +49,17 @@
                   <% end %>
                   <div class="mt-auto">
                     <%= link_to pr.name, "product_detail/#{pr.id}", class: 'card-name font-size-20px font-weight-700 mt-20px'%>
-                    <div class="card-price font-size-18px mt-10px"><%= show_price(pr.price) %> vnd</div>
-                    <div class="add">
-                      <button class='btn-minus' onclick="decrement()">-</button>
-                      <input id='demoInput' type='number' min='1' max='100' value='1' style= 'border: 1px solid #d9d9d9; text-align: center;'>
-                      <button class='btn-plus' onclick="increment()">+</button>
+                    <div class="price-css" style="text-decoration: line-through;"><span><%= number_with_delimiter(pr.price) %> vnd</span></div>
+                    <span class="dis-price"><%= number_with_delimiter(discount(pr))%> vnd</span>
+                    <div class="add-to-cart">
+                      <button class='btn-minus' onclick="decrement(<%= pr.id %>)">-</button>
+                      <input id='demoInput<%= pr.id %>' type='number' min='1' max='100' value='1' style= 'border: 1px solid #d9d9d9; text-align: center;'>
+                      <button class='btn-plus' onclick="increment(<%= pr.id %>)">+</button>
                     </div>
                     <div class="view my-10px">
-                      <button type="submit" class="btn btn-add2cart">Thêm vào giỏ hàng</button>
+                      <%= link_to shopping_path, method: :post do %>
+                        <button type="submit" class="btn btn-add2cart" onclick="addToCart(<%= pr.id %>)" data-bs-toggle="modal" data-bs-target="#addToCartModal">Thêm vào giỏ hàng</button>
+                      <% end%>
                     </div>
                   </div>
                 </div>
@@ -72,10 +75,39 @@
 </section>
 <!-- end section shop menu -->
 <script>
-  function increment() {
-     document.getElementById('demoInput').stepUp();
+  function increment(id) {
+     document.getElementById('demoInput' + id).stepUp();
   }
-  function decrement() {
-     document.getElementById('demoInput').stepDown();
+  function decrement(id) {
+     document.getElementById('demoInput' + id).stepDown();
+  }
+  function addToCart(id) {
+    var quantity = $('#demoInput' + id).val()
+    $.ajax({
+      type: "POST",
+      url: '/shopping',
+      data: {
+        item_id:  id,
+        quantity: quantity
+      },
+      dataType: 'script'
+    });
   }
 </script>
+<!-- Modal -->
+<div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addToCartModalLabel">Thông báo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Thêm vào giỏ hàng thành công
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
