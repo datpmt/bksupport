@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <% session[:cart].each do |cart| %>
+        <%= session[:cart].each do |cart| %>
           <% product = Product.find(cart[0]["id"]) %>
           <% if cart[0]["quantity"] != 0 %>
             <tr>
@@ -32,7 +32,7 @@
                   <%= link_to edit_cart_path(action_edit: "minus", item_id: product.id), style:"text-decoration: none;", remote: true do %>
                     <button class='btn-minus'>-</button>
                   <% end %>
-                  <input id='demoInput' type='number' min='1' value='<%= cart[0]["quantity"] %>' style= 'border: 1px solid #d9d9d9; text-align: center;'>
+                  <input type='number' min='1' value='<%= cart[0]["quantity"] %>' style= 'border: 1px solid #d9d9d9; text-align: center;'>
                   <%= link_to edit_cart_path(action_edit: "plus", item_id: product.id), style:"text-decoration: none;", remote: true do %>
                     <button class='btn-plus'>+</button>
                   <% end %>
