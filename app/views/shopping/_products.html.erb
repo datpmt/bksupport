@@ -11,6 +11,7 @@
           <% end %>
           <div class="mt-auto">
             <%= link_to pr.name, "product_detail/#{pr.id}", class: 'card-name font-size-20px font-weight-700 mt-20px'%>
+            <p style="color: #ffc107; font-weight: 700; font-size: 18px;">Đặc sản <%= City.find(pr.city_id).name %></p>
             <div class="price-css" style="text-decoration: line-through;"><span><%= number_with_delimiter(pr.price) %> vnd</span></div>
             <span class="dis-price"><%= number_with_delimiter(discount(pr))%> vnd</span>
             <div class="add-to-cart">
