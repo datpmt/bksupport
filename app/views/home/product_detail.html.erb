@@ -83,22 +83,21 @@
           </p>
         </div>
         <div class="quatity">
-          <div class="row">
+          <div class="row w-100">
             <div class="col-md-6 col-sm-6 col-6">
               <h4>Số lượng :</h4>
-              <button class="btn btn-default btn-outline-secondary btn-number" type="button"
-                                        data-type="minus" data-field="quant[1]" onclick="minus()">
-                <i class="fa fa-minus"></i>
-              </button>
-              <input type="text" name="quant[1]" class="input-number text-center" id="count"
-                                        value="1" min="1" max="10">
-              <button class="btn btn-default btn-outline-secondary btn-number" type="button"
-                                        data-type="plus" data-field="quant[1]" onclick="plus()">
-                <i class="fa fa-plus"></i>
-              </button>
+              <div class="add-to-cart">
+                <button class="btn btn-default btn-outline-secondary btn-number" onclick="decrement(<%= product.id %>)">
+                  <i class="fa fa-minus"></i>
+                </button>
+                <input id='demoInput<%= product.id %>' type='number' min='1' max='100' value='1' style= 'border: 1px solid #d9d9d9; text-align: center; height: 40px !important'>
+                <button class="btn btn-default btn-outline-secondary btn-number" onclick="increment(<%= product.id %>)">
+                  <i class="fa fa-plus"></i>
+                </button>
+              </div>
             </div>
             <div class="col-md-6 col-sm-6 col-6 align-self-center text-center">
-              <button type="submit" class="btn btn-add2cart">Thêm vào giỏ hàng</button>
+              <button class="btn btn-add2cart" onclick="addToCart(<%= product.id %>)" data-bs-toggle="modal" data-bs-target="#addToCartModal">Thêm vào giỏ hàng</button>
             </div>
           </div>
         </div>
@@ -317,3 +316,40 @@
   </div>
 </div>
 <!-- end inner page-->
+<!-- Modal -->
+<div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addToCartModalLabel">Thông báo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Thêm vào giỏ hàng thành công
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function increment(id) {
+     document.getElementById('demoInput' + id).stepUp();
+  }
+  function decrement(id) {
+     document.getElementById('demoInput' + id).stepDown();
+  }
+  function addToCart(id) {
+    var quantity = $('#demoInput' + id).val()
+    $.ajax({
+      type: "POST",
+      url: '/shopping',
+      data: {
+        item_id:  id,
+        quantity: quantity
+      },
+      dataType: 'script'
+    });
+  }
+</script>
