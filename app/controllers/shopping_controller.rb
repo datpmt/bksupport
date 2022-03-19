@@ -4,7 +4,7 @@ class ShoppingController < ActionController::Base
   def index
     @pagy, @products = pagy(Product.all.order(id: :asc), items: 9, link_extra: 'data-remote="true"')
     if params[:search]
-      @pagy, @products = pagy(Product.all.where('name LIKE ?', "%#{params[:search]}%"))
+      @pagy, @products = pagy(Product.all.where('name ILIKE ?', "%#{params[:search]}%"))
     elsif params[:city]
       @pagy, @products = pagy(Product.all.where(city_id: params[:city]), items: 9, link_extra: 'data-remote="true"')
     elsif params[:region]
