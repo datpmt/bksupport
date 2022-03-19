@@ -26,7 +26,7 @@
       </div>
     <% end %>
   </div>
-  <% if @products.size > 1 %>
+  <% if @products.size > 0 %>
     <div class="pagination mt-3">
       <%= render 'pagination', pagy: @pagy %>
     </div>
