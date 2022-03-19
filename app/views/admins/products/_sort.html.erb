@@ -32,7 +32,13 @@
             <td><%= number_with_delimiter(product.price) %> vnd</td>
             <td><%= product.quantity %></td>
             <td><%= product.city.name %></td>
-            <td><%= product.short_des %></td>
+            <td>
+              <% if product.short_des.size > 100 %>
+                <%= product.short_des[0..100] %> ...
+              <% else %>
+                <%= product.short_des %>
+              <% end %>
+            </td>
             <td>
               <%= link_to edit_admins_product_path(product), class: 'admin-link' do %>
                 <%= image_tag 'pencil_edit.svg'%>
