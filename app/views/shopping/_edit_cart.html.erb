@@ -41,9 +41,9 @@
               <td class="position-relative text-center">
                 <div class="cart-detail" style="width:100px"><%= number_with_delimiter(cart[0]["quantity"].to_i*discount(product).to_i) %> vnd</div>
               </td>
-              <td>
+              <td class="position-relative" >
                 <%= link_to edit_cart_path(action_edit: "delete", item_id: product.id), style:"text-decoration: none;", remote: true do %>
-                  <i class="fa fa-trash" aria-hidden="true"></i>
+                  <i class="fa fa-trash cart-detail" aria-hidden="true"></i>
                 <% end %>
               </td>
             </tr>
