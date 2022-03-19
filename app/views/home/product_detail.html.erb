@@ -291,15 +291,17 @@
         <h2>CÁC SẢN PHẨM LIÊN QUAN</h2>
         <div id="carouselPrdControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <%= image_tag 'bg2.jpg', class: 'carousel-cell', style: 'margin: 0 auto;' %>
-            </div>
-            <div class="carousel-item">
-              <%= image_tag 'bg3.jpg', class: 'carousel-cell', style: 'margin: 0 auto;' %>
-            </div>
-            <div class="carousel-item">
-              <%= image_tag 'bg4.jpg', class: 'carousel-cell', style: 'margin: 0 auto;' %>
-            </div>
+            <% city     = City.all.find(product.city_id) %>
+            <% region   = Region.all.find(city.region_id) %>
+            <% cities   = City.all.where(region_id: region) %>
+            <% related  = Product.all.where(city_id: cities) %>
+            <% related.each do |rl| %>
+                <div class="carousel-item <%= rl == related.first ? 'active' : '' %>">
+                  <%= link_to "/product_detail/#{rl.id}" do %>
+                    <%= image_tag rl.photos.first.photo_url, class: 'carousel-cell', style: 'margin: 0 auto;' %>
+                  <% end %>
+                </div>
+            <% end %>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselPrdControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" style="background-color: orange" aria-hidden="true"></span>

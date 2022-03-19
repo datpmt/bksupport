@@ -58,7 +58,9 @@
                     <% Region.all.each do |region| %>
                       <div class="col-md-2">
                         <div class="title">
-                          <h5><%= region.name %></h5>
+                          <h5>
+                            <%= region.name %>
+                          </h5>
                         </div>
                         <ul>
                           <% City.where(region_id: region.id).each do |city| %>
@@ -105,7 +107,7 @@
                   <a class="nav-link dropdown-toggle p-3" href="#" id="navbarCategory" role="button" data-toggle="dropdown"> <i class="fas fa-bars mr-30px"></i>Tất cả khu vực</a>
                   <div class="dropdown-menu" aria-labelledby="navbarCategory">
                     <% Region.all.each do |region| %>
-                      <a class="dropdown-item" href="#"><%= region.name %></a>
+                      <%= link_to region.name, shopping_path(region: region.id), class: 'dropdown-item' %>
                       <% if Region.last != region %>
                         <div class="dropdown-divider"></div>
                       <% end %>
