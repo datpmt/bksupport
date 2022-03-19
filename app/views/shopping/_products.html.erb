@@ -26,7 +26,11 @@
       </div>
     <% end %>
   </div>
-  <div class="pagination mt-3">
-    <%= render 'pagination', pagy: @pagy %>
-  </div>
+  <% if @products.size > 1 %>
+    <div class="pagination mt-3">
+      <%= render 'pagination', pagy: @pagy %>
+    </div>
+  <% else %>
+    Chưa có sản phẩm nào. ^^
+  <% end %>
 </div>

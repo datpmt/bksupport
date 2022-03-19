@@ -5,6 +5,11 @@ class ShoppingController < ActionController::Base
     @pagy, @products = pagy(Product.all.order(id: :asc), items: 9, link_extra: 'data-remote="true"')
     if params[:search]
       @pagy, @products = pagy(Search.new(Product.all).search(params[:search]), items: 9, link_extra: 'data-remote="true"')
+    elsif params[:city]
+      @pagy, @products = pagy(Product.all.where(city_id: params[:city]), items: 9, link_extra: 'data-remote="true"')
+    elsif params[:region]
+      cities = City.all.where(region_id: params[:region])
+      @pagy, @products = pagy(Product.all.where(city_id: cities), items: 9, link_extra: 'data-remote="true"')
     elsif params[:sort]
       @pagy, @products = pagy(Sort.new(Product.all).sort(params[:sort]), items: 9, link_extra: 'data-remote="true"')
       @class_sort = params[:sort]

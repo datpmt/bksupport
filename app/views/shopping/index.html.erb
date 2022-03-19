@@ -30,7 +30,9 @@
           <div class="list-item p-4">
             <ul>
               <% Region.all.each do |region| %>
-                <li><a href="#"><%= region.name %></a></li>
+                <li>
+                  <%= link_to region.name, shopping_path(region: region.id) %>
+                </li>
               <% end %>
             </ul>
           </div>
