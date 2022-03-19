@@ -5,4 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   CSV_CUSTOMERS = %w(id real_name email phone address dob).freeze
   validates :dob, presence: true
+  validates :phone, presence: true
+  validates :real_name, presence: true
+
 end

@@ -9,3 +9,9 @@
 .cursor {
   cursor: pointer;
 }
+
+#body-home {
+  section.container {
+    min-height: calc(100vh - 481px);
+  }
+}

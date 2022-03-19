@@ -1,15 +1,21 @@
 Rails.application.routes.draw do
   root 'home#index'
-  get 'shopping', to: 'shopping#index'
-  get 'edit_cart', to: 'shopping#edit_cart'
-  post 'shopping', to: 'shopping#cart'
-  get 'term', to: 'home#term'
-  get 'about_us', to: 'home#about_us'
-  get 'contact', to: 'home#contact'
-  get 'my_acc', to: 'home#my_acc'
-  get 'cart', to: 'home#cart'
-  get 'checkout', to: 'home#checkout'
+  get 'shopping',           to: 'shopping#index'
+  get 'edit_cart',          to: 'shopping#edit_cart'
+  get 'term',               to: 'home#term'
+  get 'about_us',           to: 'home#about_us'
+  get 'contact',            to: 'home#contact'
+  get 'my_acc',             to: 'home#my_acc'
+  get 'cart',               to: 'home#cart'
+  get 'checkout',           to: 'home#checkout'
   get 'product_detail/:id', to: 'home#product_detail'
+
+  post 'shopping',          to: 'shopping#cart'
+  post 'order',             to: 'home#order'
+
+
+
+
 
   devise_for :customers, controllers: {
     sessions: 'customers/auths/sessions',
@@ -35,6 +41,7 @@ Rails.application.routes.draw do
     resources :customers
     resources :products
     resources :photos
+    resources :orders
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

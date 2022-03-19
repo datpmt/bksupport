@@ -1,73 +1,98 @@
 <section class="container">
-  <div class="row mb-5">
-    <div class="col-12 col-xl-8">
-      <h5 class="font-weight-bold">Chi tiết thanh toán</h5>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Họ và tên</label>
-            <input type="text" class="form-control" value="<%= current_customer.real_name %>">
+  <% if flash[:success].present? %>
+    <p class= "alert" style="color:green">
+      <%= flash[:success] %>
+    </p>
+  <% else %>
+    <%= form_with url: order_path, method: :post do |f| %>
+      <div class="row mb-5">
+        <div class="col-12 col-xl-8">
+          <h5 class="font-weight-bold">Chi tiết thanh toán</h5>
+          <% if flash[:error].present? %>
+            <p class= "alert color-red">
+              <%= flash[:error] %>
+            </p>
+          <% end %>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Họ và tên</label>
+                <%= f.text_field  :real_name, class: "form-control", value: current_customer.real_name %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Số điện thoại</label>
+                <%= f.text_field  :phone, class: "form-control", type:"number", value: current_customer.phone %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Email</label>
+                <input disabled type="text" class="form-control" value="<%= current_customer.email %>">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Tổng hóa đơn</label>
+                <input disabled type="text" class="form-control" value="<%= number_with_delimiter(session[:total]) %> vnd">
+                <%= f.text_field  :total, class: "form-control d-none", value: session[:total] %>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Danh sách sản phẩm</label>
+                <% detail = ""  %>
+                <% session[:cart].each do |cart| %>
+                  <% detail += Product.find(cart[0]["id"]).name + " x" + cart[0]["quantity"] + '; ' %>
+                <% end %>
+                <p style="color: green"><%= detail %></p>
+                <%= f.text_field  :detail, class: "form-control d-none", value: detail %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Tỉnh / Thành phố </label>
+                <%= f.text_field  :city, class: "form-control", value: current_customer.city %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Quận / Huyện</label>
+                <%= f.text_field  :district, class: "form-control", value: current_customer.district %>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Địa chỉ cụ thể</label>
+                <%= f.text_field  :address, class: "form-control", value: current_customer.address %>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Số điện thoại</label>
-            <input type="text" class="form-control" value="<%= current_customer.phone %>">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Email</label>
-            <input disabled type="text" class="form-control" value="<%= current_customer.email %>">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Tổng hóa đơn</label>
-            <input disabled type="text" class="form-control" value="<%= number_with_delimiter(session[:total]) %> vnd">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Tỉnh / Thành phố </label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Quận / Huyện</label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="form-group">
-            <label>Địa chỉ cụ thể</label>
-            <input type="text" class="form-control">
+        <div class="col-12 col-xl-4">
+          <div class="cart_totals">
+            <div class="table-responsive">
+              <h5 class="font-weight-bold">Phương thức thanh toán</h5>
+              <div class="ul-css m-0">
+                <ul class="m-0 ml-3">
+                  <div>
+                    <%= f.radio_button :payment_method, "cod", checked: true %>
+                    <label for="payment_method_bacs"> COD </label>
+                  </div>
+                  <%= f.radio_button :payment_method, "transfer" %>
+                  <label for="payment_method_bacs"> Chuyển khoản ngân hàng </label>
+                  <div>
+                    <p>Thực hiện thanh toán của bạn trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn đặt hàng của bạn làm tham chiếu thanh toán. Đơn đặt hàng của bạn sẽ không được chuyển cho đến khi tiền đã gửi
+                      trong tài khoản của chúng tôi.</p>
+                  </div>
+                  <%= f.submit "Đặt hàng", class: "btn btn-add2cart" %>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-12 col-xl-4">
-      <div class="cart_totals">
-        <div class="table-responsive">
-          <h5 class="font-weight-bold">Phương thức thanh toán</h5>
-          <div class="ul-css m-0">
-            <ul class="m-0 ml-3">
-              <div>
-                <input type="radio" name="thanhtoan" checked="checked">
-                <label for="payment_method_bacs"> COD </label>
-              </div>
-              <input type="radio" name="thanhtoan" >
-              <label for="payment_method_bacs"> Chuyển khoản ngân hàng </label>
-              <div>
-                <p>Thực hiện thanh toán của bạn trực tiếp vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng ID đơn đặt hàng của bạn làm tham chiếu thanh toán. Đơn đặt hàng của bạn sẽ không được chuyển cho đến khi tiền đã gửi
-                  trong tài khoản của chúng tôi.</p>
-              </div>
-              <button> <a href="#" class="btn btn-add2cart"> Đặt hàng</a> </button>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <% end %>
+  <% end %>
 </section>

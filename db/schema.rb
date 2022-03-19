@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_10_234259) do
+ActiveRecord::Schema.define(version: 2022_03_19_031925) do
 
   create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -62,6 +62,20 @@ ActiveRecord::Schema.define(version: 2022_03_10_234259) do
     t.index ["city_id"], name: "index_districts_on_city_id"
   end
 
+  create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.string "total"
+    t.text "detail"
+    t.string "payment_method"
+    t.string "city"
+    t.string "district"
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "status", default: "pending"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+  end
+
   create_table "photos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "product_id"
     t.string "photo"
@@ -91,5 +105,6 @@ ActiveRecord::Schema.define(version: 2022_03_10_234259) do
 
   add_foreign_key "cities", "regions"
   add_foreign_key "districts", "cities"
+  add_foreign_key "orders", "customers"
   add_foreign_key "products", "cities"
 end

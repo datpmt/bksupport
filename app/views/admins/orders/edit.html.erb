@@ -1,0 +1,30 @@
+<div class="mt-20px">
+  <div class="card">
+    <div class="tab" onload="loadTab()">
+      <a class="tablinks active" onclick="navTab(this, 'order-info')">Order information</a>
+      <a class="tablinks" onclick="navTab(this, 'order-item')">Items</a>
+      <button type="button" class="btn btn-yellow btn-save mt-5px" style="float: right">Save</button>
+    </div>
+    <div class="card-body body-admin p-0">
+      <div class="table-responsive">
+        <div class="order-form p-40px">
+          <%= render 'form', url: admins_order_path, method: :PUT, selected_patterns: @selected_patterns, patterns: @patterns %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function navTab(ele, tab){
+    $('.tab-content').addClass('d-none')
+    $('.tablinks').removeClass('active')
+    $(ele).addClass('active')
+    $(`#${tab}`).removeClass('d-none')
+  }
+  function loadTab() {
+    $('.tablinks.active').click();
+  }
+  $('.btn-save').click(function(){
+    $("#button-submit").click()
+  })
+</script>

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  total: MyString
+  detail: MyText
+  payment_method: MyString
+  city: MyString
+  district: MyString
+  address: MyString
+
+two:
+  customer: two
+  total: MyString
+  detail: MyText
+  payment_method: MyString
+  city: MyString
+  district: MyString
+  address: MyString

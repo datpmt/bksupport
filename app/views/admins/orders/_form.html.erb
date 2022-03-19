@@ -1,0 +1,67 @@
+<%= simple_form_for @order, url: url, method: method do |f| %>
+  <div id="order-info" class="tab-content">
+    <div class="form-inputs mb-10px row">
+      <div class="col-xxl-3">
+        <label>Billing Name</label>
+        <input type="text" disabled class="form-control" value="<%= Customer.find(@order.customer_id).real_name %>">
+      </div>
+      <div class="col-xxl-3">
+        <label>Total (vnd)</label>
+        <input type="text" disabled class="form-control" value="<%= @order.total %>">
+      </div>
+      <div class="col-xxl-3">
+        <label>Date </label>
+        <input type="text" disabled class="form-control" value="<%= @order.created_at.strftime("%d %b %Y") %>">
+      </div>
+      <div class="col-xxl-3 pr-0px">
+        <label>Status</label>
+        <%= f.input :status, as: :select, collection: [['Pending', 'pending'], ['Shipping', 'shipping'], ['Completed', 'completed']],
+          autofocus: true, label: false, include_blank: false,
+          input_html: { class: "form-control"} %>
+      </div>
+      <div class="col-12 mt-45px">
+        <div class="row">
+          <div class="col-xxl-4">
+            <label>Shipping Information</label>
+            <div class="order-info-input">
+              <p>Address: <%= @order.address %></p>
+              <p>District: <%= @order.district %></p>
+              <p>City: <%= @order.city %></p>
+              <p>Phone Number: <%= Customer.find(@order.customer_id).phone %></p>
+            </div>
+          </div>
+          <div class="col-xxl-4">
+            <label>Billing Information</label>
+            <div class="order-info-input">
+              <p>Payment Type: Credit Card</p>
+              <p>Provider: VISA ending in 1234</p>
+              <p>Valid Date: 12/24</p>
+              <p>CVV: 123</p>
+            </div>
+          </div>
+          <div class="col-xxl-4">
+            <label>Shipping Method</label>
+            <div class="order-info-input">
+              <p>
+                <% if @order.payment_method == 'cod' %>
+                  COD
+                <% else %>
+                  Transfers
+                <% end %>
+              </p>
+              <p>Order ID: <%= @order.id %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="order-item" class="tab-content d-none">
+    <div class="form-inputs mb-10px">
+      <%= @order.detail %>
+    </div>
+  </div>
+  <div class="form-actions d-none">
+    <%= f.button :submit, "Save", class: "", id: "button-submit" %>
+  </div>
+<% end %>
