@@ -44,7 +44,7 @@
                 <label>Danh sách sản phẩm</label>
                 <% detail = ""  %>
                 <% session[:cart].each do |cart| %>
-                  <% detail += Product.find(cart[0]["id"]).name + " x" + cart[0]["quantity"] + '; ' %>
+                  <% detail += Product.find(cart[0]["id"]).name + " x" + cart[0]["quantity"].to_s + '; ' %>
                 <% end %>
                 <p style="color: green"><%= detail %></p>
                 <%= f.text_field  :detail, class: "form-control d-none", value: detail %>
