@@ -70,62 +70,22 @@
       <p>Dưới đây là nhũng sản phẩm được ưa chuộng nhất của cửa hàng chúng tôi, cảm ơn quý khách đã ủng hộ ^^</p>
     </div>
     <div class="row d-flex justify-content-center">
-      <div class="col-md-3 d-flex justify-content-center p-0 m-20px">
-        <div class="card d-flex justify-content-end my-4">
-          <%= image_tag 'mam.jpg' %>
-          <h3 class="card-title mt-20px">Mắm mực Hai Phượng</h3>
-          <p class="description">Entropy thông tin mô tả mức độ hỗn loạn trong một tín hiệu lấy từ một sự kiện ngẫu nhiên. Nói cách khác, entropy cũng chỉ ra có bao nhiêu thông tin
-          </p>
-          <%= link_to 'Đọc thêm', '/product_detail/1', class: 'btn btn-outline-success' %>
+      <% Product.limit(6).order("RANDOM()").each do |pr| %>
+        <div class="col-md-3 d-flex justify-content-center p-0 m-20px" style="min-height: 400px;">
+          <div class="card d-flex justify-content-end my-4 w-100 h-100">
+            <%= image_tag pr.photos.first.photo_url, class: 'mb-auto' %>
+            <h3 class="card-title mt-20px"><%= pr.name %></h3>
+            <p class="description">
+              <% if pr.description.size > 100 %>
+                <%= pr.description[0..100] %>...
+              <% else %>
+                <%= pr.description[0..100] %>
+              <% end %>
+            </p>
+            <%= link_to 'Đọc thêm', "/product_detail/#{pr.id}", class: 'btn btn-outline-success' %>
+          </div>
         </div>
-      </div>
-      <div class="col-md-3 d-flex justify-content-center p-0 m-20px">
-        <div class="card d-flex justify-content-end my-4">
-          <%= image_tag 'mam.jpg' %>
-          <h3 class="card-title mt-20px">Mắm mực Hai Phượng</h3>
-          <p class="description">Entropy thông tin mô tả mức độ hỗn loạn trong một tín hiệu lấy từ một sự kiện ngẫu nhiên. Nói cách khác, entropy cũng chỉ ra có bao nhiêu thông tin
-          </p>
-          <%= link_to 'Đọc thêm', '/product_detail/1', class: 'btn btn-outline-success' %>
-        </div>
-      </div>
-      <div class="col-md-3 d-flex justify-content-center p-0 m-20px">
-        <div class="card d-flex justify-content-end my-4">
-          <%= image_tag 'mam.jpg' %>
-          <h3 class="card-title mt-20px">Mắm mực Hai Phượng</h3>
-          <p class="description">Entropy thông tin mô tả mức độ hỗn loạn trong một tín hiệu lấy từ một sự kiện ngẫu nhiên. Nói cách khác, entropy cũng chỉ ra có bao nhiêu thông tin
-          </p>
-          <%= link_to 'Đọc thêm', '/product_detail/1', class: 'btn btn-outline-success' %>
-        </div>
-      </div>
-    </div>
-    <div class="row d-flex justify-content-center">
-      <div class="col-md-3 d-flex justify-content-center p-0 m-20px">
-        <div class="card d-flex justify-content-end my-4">
-          <%= image_tag 'mam.jpg' %>
-          <h3 class="card-title mt-20px">Mắm mực Hai Phượng</h3>
-          <p class="description">Entropy thông tin mô tả mức độ hỗn loạn trong một tín hiệu lấy từ một sự kiện ngẫu nhiên. Nói cách khác, entropy cũng chỉ ra có bao nhiêu thông tin
-          </p>
-          <%= link_to 'Đọc thêm', '/product_detail/1', class: 'btn btn-outline-success' %>
-        </div>
-      </div>
-      <div class="col-md-3 d-flex justify-content-center p-0 m-20px">
-        <div class="card d-flex justify-content-end my-4">
-          <%= image_tag 'mam.jpg' %>
-          <h3 class="card-title mt-20px">Mắm mực Hai Phượng</h3>
-          <p class="description">Entropy thông tin mô tả mức độ hỗn loạn trong một tín hiệu lấy từ một sự kiện ngẫu nhiên. Nói cách khác, entropy cũng chỉ ra có bao nhiêu thông tin
-          </p>
-          <%= link_to 'Đọc thêm', '/product_detail/1', class: 'btn btn-outline-success' %>
-        </div>
-      </div>
-      <div class="col-md-3 d-flex justify-content-center p-0 m-20px">
-        <div class="card d-flex justify-content-end my-4">
-          <%= image_tag 'mam.jpg' %>
-          <h3 class="card-title mt-20px">Mắm mực Hai Phượng</h3>
-          <p class="description">Entropy thông tin mô tả mức độ hỗn loạn trong một tín hiệu lấy từ một sự kiện ngẫu nhiên. Nói cách khác, entropy cũng chỉ ra có bao nhiêu thông tin
-          </p>
-          <%= link_to 'Đọc thêm', '/product_detail/1', class: 'btn btn-outline-success' %>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </section>
