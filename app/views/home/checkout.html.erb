@@ -81,9 +81,9 @@
               <h5 class="font-weight-bold">Phương thức thanh toán</h5>
               <div class="ul-css m-0">
                 <ul class="m-0 ml-3">
-                  <div>
+                  <div class="mb-20px">
                     <%= f.radio_button :payment_method, "cod", checked: true %>
-                    <label for="payment_method_bacs"> COD </label>
+                    <label for="payment_method_bacs"> COD (Thanh toán khi nhận hàng) </label>
                   </div>
                   <%= f.radio_button :payment_method, "transfer" %>
                   <label for="payment_method_bacs"> Chuyển khoản ngân hàng </label>

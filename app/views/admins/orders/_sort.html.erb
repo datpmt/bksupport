@@ -4,51 +4,19 @@
       <thead class="bg-muted">
         <tr>
           <th scope="col" class="pl-38px">UID</th>
-          <% if @class_sort%>
-            <% if @class_sort == "billing_name"%>
-              <th scope="col">
-                Billing Name
-                <%= link_to admins_orders_path(sort_contra: "billing_name"), class:'sort-contra', remote: true do %>
-                  <%= image_tag 'sort_contra.svg', class:"pb-5px"%>
-                <% end %>
-              </th>
-              <th scope="col">Print size</th>
-              <th scope="col">
-                Date
-                <%= link_to admins_orders_path(sort: "date"), class: "date_sort", remote: true do %>
-                  <%= image_tag 'sort_icon.svg', class:"pb-5px"%>
-                <% end %>
-              </th>
-            <% else%>
-              <th scope="col">
-                Billing Name
-                <%= link_to admins_orders_path(sort: "billing_name"), class: "billing_name_sort", remote: true do %>
-                  <%= image_tag 'sort_icon.svg', class:"pb-5px"%>
-                <% end %>
-              </th>
-              <th scope="col">Print size</th>
-              <th scope="col">
-                Date
-                <%= link_to admins_orders_path(sort_contra: "date"), class:'sort-contra', remote: true do %>
-                  <%= image_tag 'sort_contra.svg', class:"pb-5px"%>
-                <% end %>
-              </th>
-            <% end%>
-          <% else%>
-            <th scope="col">
-              Billing Name
-              <%= link_to admins_orders_path(sort: "billing_name"), class: "billing_name_sort", remote: true do %>
-                <%= image_tag 'sort_icon.svg', class:"pb-5px"%>
-              <% end %>
-            </th>
-            <th scope="col">Print size</th>
-            <th scope="col">
-              Date
-              <%= link_to admins_orders_path(sort: "date"), class: "date_sort", remote: true do %>
-                <%= image_tag 'sort_icon.svg', class:"pb-5px"%>
-              <% end %>
-            </th>
-          <% end%>
+          <th scope="col">
+            Billing Name
+            <%= link_to admins_orders_path(sort: "billing_name"), class: "billing_name_sort", remote: true do %>
+              <%= image_tag 'sort_icon.svg', class:"pb-5px"%>
+            <% end %>
+          </th>
+          <th scope="col">Details</th>
+          <th scope="col">
+            Date
+            <%= link_to admins_orders_path(sort: "date"), class: "date_sort", remote: true do %>
+              <%= image_tag 'sort_icon.svg', class:"pb-5px"%>
+            <% end %>
+          </th>
           <th scope="col">Total</th>
           <th scope="col">Payment Method</th>
           <th scope="col">Payment Status</th>
@@ -61,16 +29,18 @@
           <tr style = "background-color: <%= i % 2 == 0? '#F9F9F9' : '' %> ">
             <% i += 1 %>
             <th scope="row" class="pl-38px"><%= 1000 + order.id %></th>
-            <td><%= order.address.first_name + " " + order.address.last_name %></td>
+            <td><%= Customer.find(order.customer_id).real_name %></td>
+            <td><%= order.detail %></td>
+            <td><%= order.created_at.strftime("%d %b %Y") %></td>
+            <td><%= number_with_delimiter(order.total) %> vnd</td>
             <td>
-              <% order.cart.cart_print_size_templates.each do |item| %>
-                <%= item.print_size.format + ' ' + item .print_size.size %>
+              <% if order.payment_method == 'cod' %>
+                COD
+              <% else %>
+                Transfers
               <% end %>
             </td>
-            <td><%= order.payment&.pay_at&.strftime("%d %b %Y %H:%M %p") %></td>
-            <td><%= '$' + order.total.to_s %></td>
-            <td><%= order.payment.payment_method %></td>
-            <td><%= order.payment && order.payment == "pending" ? "Waiting for payment" : "Completed"  %></td>
+            <td><%= order.status.capitalize() %></td>
             <td>
               <%= link_to edit_admins_order_path(order), class: 'admin-link' do %>
                 <%= image_tag 'pencil_edit.svg'%>

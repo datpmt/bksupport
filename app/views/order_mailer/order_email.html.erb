@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Xác nhận đơn hàng từ Đặc Sản Việt Nam</h1>
+    <p>
+      Xin chào <%= @customer.real_name %>,
+    </p>
+    <p>Cảm ơn Anh/chị đã đặt hàng tại <span style="font-weight: 700">dacsanvietnam.herokuapp.com</span>!</p>
+    <p>
+      Đơn hàng của Anh/chị đã được tiếp nhận, chúng tôi sẽ nhanh chóng liên hệ với Anh/chị. Liên hệ chúng tôi nếu cần được hỗ trợ (0999999999).
+    </p>
+    <h3>Thông tin đơn hàng</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Người mua</th>
+          <th scope="col">Địa chỉ</th>
+          <th scope="col">Chi tiết</th>
+          <th scope="col">Phương thức thanh toán</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>Tên: <span style="font-weight: 700"><%= @customer.real_name %></span></p>
+            <p>Số điện thoại: <span style="font-weight: 700"><%= @customer.phone %></span></p>
+            <p>Email: <span style="font-weight: 700"><%= @customer.email %></span></p>
+          </td>
+          <td><%= @customer.address + ' ' + @customer.district + ' ' + @customer.city %></td>
+          <td style="color: green"><%= @order.detail %></td>
+          <td style="color: red"><%= @order.payment_method == 'cod' ? 'COD(Thanh toán khi nhận hàng)' : "Chuyển khoản #{number_with_delimiter(@order.total)} vnd vào tài khoản chúng tôi (ở bên dưới)." %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% if @order.payment_method != 'cod' %>
+      <h3>Thông tin tài khoản của <span style="font-weight: 700">dacsanvietnam.herokuapp.com</span></h3>
+      <h2 style="color: red">Vui lòng chuyển khoản đúng theo thông tin bên dưới!</h2>
+      <p>STK: <span style="font-weight: 700">0170171017777</span></p>
+      <p>Ngân hàng: <span style="font-weight: 700">MBBank</span></p>
+      <p>Tên chủ tài khoản: <span style="font-weight: 700">Trần Đăng Đức Đạt</span></p>
+      <p>Nội dung chuyển khoản: <span style="font-weight: 700"><%= 'Order' + @order.id.to_s %></span><span style="color: red"> (Không nhập nội dung khác)</span></p>
+      <p>Số tiền: <span style="font-weight: 700"><%= number_with_delimiter(@order.total) %> vnd</span></p>
+    <% end %>
+  </body>
+</html>

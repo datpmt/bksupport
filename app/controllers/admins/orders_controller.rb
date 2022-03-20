@@ -44,10 +44,11 @@ class Admins::OrdersController < Admins::BaseController
 
   def update
     if @order.update(order_params)
-      flash[:success] = 'Order updated successful'
+      OrderMailer.with(order: @order, customer: current_customer).order_status.deliver_later
+      flash[:success] = 'Order updated successful!'
       redirect_to admins_orders_path
     else
-      flash[:error] = 'Order updated failed'
+      flash[:error] = 'Order updated failed!'
       render :edit
     end
   end
@@ -55,7 +56,7 @@ class Admins::OrdersController < Admins::BaseController
   private
 
   def order_params
-    params.require(:order).permit(:username, :realname, :email, :address, :phone, :dob, :zipcode, :country, :status)
+    params.require(:order).permit(:status)
   end
 
   def set_order

@@ -59,7 +59,7 @@ class HomeController < ActionController::Base
         district:       params[:district],
         address:        params[:address]
       )
-      Order.create(
+      @order = Order.create(
         customer_id:    current_customer.id,
         total:          params[:total],
         detail:         params[:detail],
@@ -68,6 +68,7 @@ class HomeController < ActionController::Base
         district:       params[:district],
         address:        params[:address]
       )
+      OrderMailer.with(order: @order, customer: current_customer).order_email.deliver_later
       flash[:success] = "Đặt hàng thành công. Vui lòng kiểm tra email để xem thông tin đơn hàng!"
       redirect_to checkout_path
     end
