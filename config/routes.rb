@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   post 'shopping',          to: 'shopping#cart'
   post 'order',             to: 'home#order'
+  post 'information',       to: 'home#information'
 
 
 

@@ -3,6 +3,89 @@
   <div class="container">
     <div id="row">
       <div class="col-md-12">
+        <% flash.each do |key, value| %>
+          <% if !value.nil? %>
+            <div class="alert" style="color: <%= key == 'error' ? 'red' : 'green' %>">
+              <%= value %>
+            </div>
+          <% end %>
+        <% end %>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <div class="title border-bottom">
+              <h1>Các đơn hàng</h1>
+            </div>
+            <% if @orders.present? %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Ngày</th>
+                    <th scope="col">Tổng</th>
+                    <th scope="col">Chi tiết</th>
+                    <th scope="col">Trạng thái</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @orders.each do |order| %>
+                    <tr>
+                      <td><%= order.created_at.strftime("%d %b %Y") %></td>
+                      <td><%= number_with_delimiter(order.total) %> vnd</td>
+                      <td><%= order.detail %></td>
+                      <td>
+                        <% if order.status == 'pending' %>
+                          Đang xử lý
+                        <% elsif order.status == 'shipping' %>
+                          Đang vận chuyển
+                        <% else %>
+                          Hoàn tất
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <p>Bạn chưa có đơn hàng nào. ^^</p>
+            <% end %>
+            <%= render 'shopping/pagination', pagy: @pagy %>
+          </div>
+        </div>
+        <div id="collapseTwo" class="collapse mx-auto" style="width: 800px" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            <%= form_with url: information_path, method: :post, class:'card p-5 m-5  bg-light' do |f| %>
+              <div class="title text-center">
+                <h1>Thông tin tài khoản</h1>
+              </div>
+              <div class="form-group">
+                <label>Họ và tên</label>
+                <%= f.text_field :name, class: 'form-control', value: current_customer.real_name, placeholder:"Họ và tên" %>
+              </div>
+              <div class="form-group">
+                <label>Số điện thoại</label>
+                <%= f.text_field :phone, class: 'form-control', value: current_customer.phone, placeholder:"Số điện thoại" %>
+              </div>
+              <div class="form-group">
+                <label>Tỉnh/ Thành phố</label>
+                <%= f.text_field :city, class: 'form-control', value: current_customer.city, placeholder:"Tỉnh/ Thành phố" %>
+              </div>
+              <div class="form-group">
+                <label>Quận/ Huyện</label>
+                <%= f.text_field :district, class: 'form-control', value: current_customer.district, placeholder:"Quận/ Huyện" %>
+              </div>
+              <div class="form-group">
+                <label>Địa chỉ</label>
+                <%= f.text_field :address, class: 'form-control', value: current_customer.address, placeholder:"Địa chỉ cụ thể" %>
+              </div>
+              <div class="form-group">
+                <label>Mật khẩu</label>
+                <%= f.password_field :password, class: 'form-control', placeholder:"Mật khẩu" %>
+              </div>
+              <button type="submit" class="btn btn-warning mt-2">Cập nhật</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
         <div id="accordion">
           <div class="card">
             <div class="card-header text-center" id="headingTwo">
@@ -12,93 +95,6 @@
                 </button>
               </h5>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="card-body">
-            <div class="title border-bottom">
-              <h1>Các đơn hàng</h1>
-            </div>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Thứ tự</th>
-                  <th scope="col">Ngày</th>
-                  <th scope="col">Trạng thái</th>
-                  <th scope="col">Tổng</th>
-                  <th scope="col">Hoạt động</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>10-05-2018</td>
-                  <td>Đang tiến hành</td>
-                  <td>$25.00 cho 1 vật phẩm</td>
-                  <td>
-                    <div class="btn btn-warning px-2">Xem</div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>10-05-2018</td>
-                  <td>Đang tiến hành</td>
-                  <td>$25.00 cho 1 vật phẩm</td>
-                  <td>
-                    <div class="btn btn-warning px-2">Xem</div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>10-05-2018</td>
-                  <td>Đang tiến hành</td>
-                  <td>$25.00 cho 1 vật phẩm</td>
-                  <td>
-                    <div class="btn btn-warning px-2">Xem</div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <nav aria-label="...">
-              <ul class="pagination">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-          <div class="card-body">
-            <form class="card p-5 m-5 mx-auto bg-light" style="width: 600px">
-              <div class="title text-center">
-                <h1>Cập nhật</h1>
-              </div>
-              <div class="form-group">
-                <label for="Name">Tên</label>
-                <input type="text" class="form-control" id="Name" placeholder="Name">
-              </div>
-              <div class="form-group">
-                <label for="email">Địa chỉ Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">Chúng tôi sẽ không để lộ Email của bạn cho bất kì ai.</small>
-              </div>
-              <div class="form-group">
-                <label for="Password">Mật khẩu</label>
-                <input type="password" class="form-control" id="Password" placeholder="Password">
-              </div>
-              <button type="submit" class="btn btn-warning mt-2">Cập nhật</button>
-            </form>
           </div>
         </div>
       </div>

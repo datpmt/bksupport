@@ -1,4 +1,5 @@
 class HomeController < ActionController::Base
+  include Pagy::Backend
   layout 'application'
   def index
   end
@@ -17,6 +18,23 @@ class HomeController < ActionController::Base
 
   def my_acc
     authenticate_customer!
+    @pagy, @orders = pagy(Order.all.where(customer_id: current_customer), items: 5, link_extra: 'data-remote="true"')
+  end
+
+  def information
+    if current_customer.valid_password?(params[:password])
+      current_customer.update(
+        real_name: params[:name],
+        phone:      params[:phone],
+        city:       params[:city],
+        district:   params[:district],
+        address:    params[:address],
+      )
+      flash[:success] = "Cập nhật thành công!"
+    else
+      flash[:error] = "Mật khẩu không chính xác! Vui lòng thử lại!"
+    end
+    redirect_to my_acc_path
   end
 
   def cart

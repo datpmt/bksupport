@@ -1,0 +1,40 @@
+<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+  <div class="card-body">
+    <div class="title border-bottom">
+      <h1>Các đơn hàng</h1>
+    </div>
+    <% if @orders.present? %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Ngày</th>
+            <th scope="col">Tổng</th>
+            <th scope="col">Chi tiết</th>
+            <th scope="col">Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.created_at.strftime("%d %b %Y") %></td>
+              <td><%= number_with_delimiter(order.total) %> vnd</td>
+              <td><%= order.detail %></td>
+              <td>
+                <% if order.status == 'pending' %>
+                  Đang xử lý
+                <% elsif order.status == 'shipping' %>
+                  Đang vận chuyển
+                <% else %>
+                  Hoàn tất
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>Bạn chưa có đơn hàng nào. ^^</p>
+    <% end %>
+    <%= render 'shopping/pagination', pagy: @pagy %>
+  </div>
+</div>
