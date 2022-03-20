@@ -16,23 +16,10 @@ class Admins::ExportsController < Admins::BaseController
   end
 
   def orders_export
-    data = CSV.generate do |csv|
-      csv << Order::CSV_ORDERS
-      order_list.each do |order|
-        csv << [
-          order.id,
-          order.address.first_name + " " + order.address.last_name,
-          "",
-          order.payment&.pay_at&.strftime("%d %b %Y %H:%M%p"),
-          order.total,
-          order.payment.payment_method,
-          order.payment && order.payment == "pending" ? "Waiting for payment" : "Completed"
-        ]
-      end
-    end
+    csv = Export.new(Order.all, Order::CSV_ORDERS)
     respond_to do |format|
-      format.csv { send_data data,
-        filename: "Orders_#{Time.now.strftime("%d/%m/%Y")}.csv" }
+      format.csv { send_data csv.perform,
+        filename: "Orders__#{Time.now.strftime("%d/%m/%Y")}.csv" }
     end
   end
 

@@ -39,14 +39,16 @@
                 <%= f.text_field  :total, class: "form-control d-none", value: session[:total] %>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 mt-10px">
               <div class="form-group">
                 <label>Danh sách sản phẩm</label>
                 <% detail = ""  %>
                 <% session[:cart].each do |cart| %>
-                  <% detail += Product.find(cart[0]["id"]).name + " x" + cart[0]["quantity"].to_s + '; ' %>
+                  <% if cart[0]["quantity"]!= 0 %>
+                    <% detail += '(' + Product.find(cart[0]["id"]).name + " x" + cart[0]["quantity"].to_s + ') ' %>
+                    <p style="color: green"><%= Product.find(cart[0]["id"]).name + " x" + cart[0]["quantity"].to_s %></p>
+                  <% end %>
                 <% end %>
-                <p style="color: green"><%= detail %></p>
                 <%= f.text_field  :detail, class: "form-control d-none", value: detail %>
               </div>
             </div>
@@ -69,6 +71,9 @@
               </div>
             </div>
           </div>
+          <%= link_to cart_path do %>
+            <button class= "btn btn-add2cart mt-20px">Quay lại giỏ hàng</button>
+          <% end %>
         </div>
         <div class="col-12 col-xl-4">
           <div class="cart_totals">

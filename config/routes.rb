@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     get 'admin', to: 'admins/auths/sessions#new'
     get 'customers_export', to: 'admins/exports#customers_export'
     get 'admins_export', to: 'admins/exports#admins_export'
-    # get 'orders_export', to: 'admins/exports#orders_export'
+    get 'orders_export', to: 'admins/exports#orders_export'
   end
 
   namespace :admins, path: 'admin' do

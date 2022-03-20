@@ -41,3 +41,7 @@ en:
     phone: Phone Number
     status: Status
     created_at: Created at
+    customer_id: Customer ID
+    detail: Bill details
+    total: Bill total
+    payment_method: Payment method
