@@ -44,7 +44,8 @@ class Admins::OrdersController < Admins::BaseController
 
   def update
     if @order.update(order_params)
-      OrderMailer.with(order: @order, customer: current_customer).order_status.deliver_later
+      @customer = Customer.find(Order.find(params[:id]).customer_id)
+      OrderMailer.with(order: @order, customer: @customer).order_status.deliver_later
       flash[:success] = 'Order updated successful!'
       redirect_to admins_orders_path
     else
