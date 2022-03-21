@@ -46,16 +46,28 @@
             <div class="collapse navbar-collapse" id="navbarMenu">
               <ul class="navbar-nav mr-auto ml-auto">
                 <li class="nav-item">
-                  <%= link_to 'Trang chủ', root_path, class: 'nav-link' %>
+                  <% if controller_name == 'home' && action_name == 'index' %>
+                    <%= link_to 'Trang chủ', root_path, class: 'nav-link font-weight-700' %>
+                  <% else %>
+                    <%= link_to 'Trang chủ', root_path, class: 'nav-link' %>
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'Mua sắm', shopping_path, class: 'nav-link' %>
+                  <% if controller_name == 'shopping' && action_name == 'index' %>
+                    <%= link_to 'Mua sắm', shopping_path, class: 'nav-link font-weight-700' %>
+                  <% else %>
+                    <%= link_to 'Mua sắm', shopping_path, class: 'nav-link' %>
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'Chúng tôi', about_us_path, class: 'nav-link' %>
+                  <% if controller_name == 'home' && action_name == 'about_us' %>
+                    <%= link_to 'Chúng tôi', about_us_path, class: 'nav-link font-weight-700' %>
+                  <% else %>
+                    <%= link_to 'Chúng tôi', about_us_path, class: 'nav-link' %>
+                  <% end %>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link" href="#" id="navbarDropdown">Danh mục</a>
+                  <a class="nav-link" id="navbarDropdown">Danh mục</a>
                   <div class="dropdown-menu dropdown-category row text-center">
                     <% Region.all.each do |region| %>
                       <div class="col-md-2">
@@ -76,10 +88,18 @@
                   </div>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'Liên hệ', contact_path, class: 'nav-link' %>
+                  <% if controller_name == 'home' && action_name == 'contact' %>
+                    <%= link_to 'Liên hệ', contact_path, class: 'nav-link font-weight-700' %>
+                  <% else %>
+                    <%= link_to 'Liên hệ', contact_path, class: 'nav-link' %>
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'Điều khoản', term_path, class: 'nav-link' %>
+                  <% if controller_name == 'home' && action_name == 'term' %>
+                    <%= link_to 'Điều khoản', term_path, class: 'nav-link font-weight-700' %>
+                  <% else %>
+                    <%= link_to 'Điều khoản', term_path, class: 'nav-link' %>
+                  <% end %>
                 </li>
               </ul>
               <div class="info">
@@ -121,7 +141,7 @@
             <div class="col-md-6 col-sm-12">
               <div class="search">
                 <%= form_with url: shopping_path ,class:"form-inline my-2 my-lg-0", method: 'get' do |f| %>
-                  <%= f.text_field :search, class:"form-control mr-sm-2 d-inline-block", placeholder: "Search"  %>
+                  <%= f.text_field :search, class:"form-control mr-sm-2 d-inline-block", placeholder: "Tìm kiếm sản phẩm"  %>
                   <%= f.button "Tìm kiếm", type: 'submit', class: "btn btn-success my-2 my-sm-0", style:'float: right' %>
                 <% end%>
               </div>
