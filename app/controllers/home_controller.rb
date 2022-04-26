@@ -44,6 +44,10 @@ class HomeController < ActionController::Base
     authenticate_customer!
     if session[:cart].nil? || session[:total] == 30000
       redirect_to cart_path
+    else
+      if params[:success]
+        session.delete(:cart)
+      end
     end
   end
 
@@ -70,7 +74,7 @@ class HomeController < ActionController::Base
       )
       OrderMailer.with(order: @order, customer: current_customer).order_email.deliver_later
       flash[:success] = "Đặt hàng thành công. Vui lòng kiểm tra email để xem thông tin đơn hàng!"
-      redirect_to checkout_path
+      redirect_to checkout_path(success: true)
     end
   end
 end
