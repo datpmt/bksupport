@@ -1,4 +1,4 @@
-class ShoppingController < ActionController::Base
+class ShoppingController < ApplicationController
   include Pagy::Backend
   layout 'application'
   def index

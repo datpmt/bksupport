@@ -1,0 +1,58 @@
+vi:
+  layouts:
+    application:
+      home: "Trang chủ"
+      shopping: 'Mua sắm'
+      about_us: 'Chúng tôi'
+      categories: 'Danh mục'
+      contact: 'Liên hệ'
+      term: 'Điều khoản'
+      cart: 'Giỏ hàng'
+      cart_bank: 'Giỏ hàng trống'
+      product: 'Sản phẩm'
+      payment: 'Thanh toán'
+      self: 'Bản thân'
+
+      hello: 'Xin chào'
+      logout: 'Đăng xuất'
+      login: 'Đăng nhập'
+
+      all_areas: 'Tất cả khu vực'
+
+      search_product: 'Tìm kiếm sản phẩm'
+      search: 'Tìm kiếm'
+
+      address: 'Địa chỉ'
+      telephone: 'Điện thoại'
+      vietnamese_specialty_store: 'Cửa hàng đặc sản Việt Nam'
+      join_channel: 'Tham gia kênh thông tin điện tử ngay'
+      receive_email: 'Nhận E-mail cập nhật tin tức mới nhất về shop và các ưu đãi đặc biệt.'
+      subscribe: 'Subscribe'
+
+  home:
+    index:
+      the_most_reliable_information_for_you: 'Các thông tin đáng tin nhất cho bạn'
+      favorite_specialties: 'Đặc sản yêu thích'
+      favorite_des: 'Dưới đây là nhũng sản phẩm được ưa chuộng nhất của cửa hàng chúng tôi, cảm ơn quý khách đã ủng hộ ^^'
+      read_more: 'Đọc thêm'
+      product: 'Sản phẩm'
+      product_des: 'Hãy gói ghém ẩm Việt Nam qua những đặc sản làm quà dưới đây để gửi tặng bạn bè, người thân nhé.'
+      view_more: 'Xem thêm'
+      contact_us: 'Liên hệ với chúng tôi'
+      welcome: 'CHÀO MỪNG ĐẾN VỚI CỬA HÀNG ĐẶC SẢN VIỆT NAM'
+      welcome_des: 'Nơi giúp bạn tiết kiệm túi tiền mà vẫn an tâm mua sắm'
+      specialty: 'Đặc sản'
+  header_csv:
+    id: UID
+    email: Email
+    real_name: Real Name
+    dob: Day Of Birth
+    addresses: Shipping Address
+    address: Shipping Address
+    phone: Phone Number
+    status: Status
+    created_at: Created at
+    customer_id: Customer ID
+    detail: Bill details
+    total: Bill total
+    payment_method: Payment method

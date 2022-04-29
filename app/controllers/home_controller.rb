@@ -1,4 +1,4 @@
-class HomeController < ActionController::Base
+class HomeController < ApplicationController
   include Pagy::Backend
   layout 'application'
   def index

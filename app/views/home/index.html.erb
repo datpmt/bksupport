@@ -37,7 +37,7 @@
       </div>
       <div class="col-md-6">
         <div class="title">
-          <h1>Các thông tin đáng tin nhất cho bạn</h1>
+          <h1><%= t('.the_most_reliable_information_for_you') %></h1>
         </div>
         <ul class="list-farms my-3">
           <li>
@@ -65,9 +65,9 @@
 <!-- section Service -->
 <section class="service area-between">
   <div class="contain text-center">
-    <h1 class="title">Đặc sản yêu thích</h1>
+    <h1 class="title"><%= t('.favorite_specialties') %></h1>
     <div class="subtitle d-flex justify-content-center">
-      <p>Dưới đây là nhũng sản phẩm được ưa chuộng nhất của cửa hàng chúng tôi, cảm ơn quý khách đã ủng hộ ^^</p>
+      <p><%= t('.favorite_des') %></p>
     </div>
     <div class="row d-flex justify-content-center">
       <% Product.limit(6).order("RANDOM()").each do |pr| %>
@@ -82,7 +82,7 @@
                 <%= pr.description[0..100] %>
               <% end %>
             </p>
-            <%= link_to 'Đọc thêm', "/product_detail/#{pr.id}", class: 'btn btn-outline-success' %>
+            <%= link_to t('.read_more'), "/product_detail/#{pr.id}", class: 'btn btn-outline-success' %>
           </div>
         </div>
       <% end %>
@@ -93,9 +93,9 @@
 <!-- section product -->
 <section class="product area-between">
   <div class="contain text-center">
-    <h1 class="title">Sản phẩm</h1>
+    <h1 class="title"><%= t('.product') %></h1>
     <div class="subtitle d-flex justify-content-center">
-      <p>Hãy gói ghém ẩm Việt Nam qua những đặc sản làm quà dưới đây để gửi tặng bạn bè, người thân nhé.</p>
+      <p><%= t('.product_des') %></p>
     </div>
     <div class="row d-flex justify-content-center">
       <% Product.limit(4).order("RANDOM()").each do |pr| %>
@@ -106,7 +106,7 @@
             <% end %>
             <div class="mt-auto">
               <%= link_to pr.name, "product_detail/#{pr.id}", class: 'card-name font-size-20px font-weight-700 mt-20px'%>
-              <p style="color: #ffc107; font-weight: 700; font-size: 18px;">Đặc sản <%= City.find(pr.city_id).name %></p>
+              <p style="color: #ffc107; font-weight: 700; font-size: 18px;"><%= t('.specialty') %> <%= City.find(pr.city_id).name %></p>
               <div class="price-css" style="text-decoration: line-through;"><span><%= number_with_delimiter(pr.price) %> vnd</span></div>
               <span class="dis-price"><%= number_with_delimiter(discount(pr))%> vnd</span>
             </div>
@@ -115,7 +115,7 @@
       <% end %>
     </div>
     <%= link_to shopping_path do %>
-      <div class="btn btn-outline-danger mt-5 py-2 px-4">Xem thêm</div>
+      <div class="btn btn-outline-danger mt-5 py-2 px-4"><%= t('.view_more') %></div>
     <% end %>
   </div>
 </section>
@@ -123,11 +123,11 @@
 <!-- section contact -->
 <section class="contact area-between">
   <div class="contain text-center">
-    <h1 class="title">CHÀO MỪNG ĐẾN VỚI CỬA HÀNG ĐẶC SẢN VIỆT NAM</h1>
-    <p class="subtitle">Nơi giúp bạn tiết kiệm túi tiền mà vẫn an tâm mua sắm</p>
+    <h1 class="title"><%= t('.welcome') %></h1>
+    <p class="subtitle"><%= t('.welcome_des') %></p>
     <%= link_to contact_path do %>
       <div class="btn btn-dark mt-5 py-2 px-4 contact-btn">
-        Liên hệ với chúng tôi
+        <%= t('.contact_us') %>
       </div>
     <% end %>
   </div>

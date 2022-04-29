@@ -1,36 +1,47 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  layouts:
+    application:
+      home: "Home"
+      shopping: 'Shopping'
+      about_us: 'About us'
+      categories: 'Categories'
+      contact: 'Contact'
+      term: 'Term'
+      cart: 'Cart'
+      cart_bank: 'Cart is empty'
+      product: 'Product'
+      payment: 'Payment'
+      self: 'My self'
+
+      hello: 'Hello'
+      logout: 'Log out'
+      login: 'Log in'
+
+      all_areas: 'All areas'
+
+      search_product: 'Search product'
+      search: 'Search'
+
+      address: 'Address'
+      telephone: 'Telephone'
+      vietnamese_specialty_store: 'Vietnamese specialty store'
+      join_channel: 'Join the electronic information channel now'
+      receive_email: 'Receive E-mail updates on the latest shop news and special offers.'
+      subscribe: 'Subscribe'
+
+  home:
+    index:
+      the_most_reliable_information_for_you: 'The most reliable information for you'
+      favorite_specialties: 'Favorite specialties'
+      favorite_des: 'Here are the most popular products of our store, thank you for your support ^^'
+      read_more: 'Read more'
+      product: 'Product'
+      product_des: "Let's pack Vietnamese food through the specialties as gifts below to send to friends and relatives."
+      view_more: 'View more'
+      contact_us: 'Contact us'
+      welcome: 'WELCOME TO VIETNAM SPECIAL SHOP'
+      welcome_des: 'A place to help you save money and still shop with peace of mind'
+      specialty: 'Specialty'
   header_csv:
     id: UID
     email: Email
