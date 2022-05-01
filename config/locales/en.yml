@@ -42,6 +42,14 @@ en:
       welcome: 'WELCOME TO VIETNAM SPECIAL SHOP'
       welcome_des: 'A place to help you save money and still shop with peace of mind'
       specialty: 'Specialty'
+    product_detail:
+      related_products: 'RELATED PRODUCTS'
+
+  shopping:
+    index:
+      area: 'Area'
+    products:
+      vietnamese_specialty: 'Vietnamese specialty'
   header_csv:
     id: UID
     email: Email

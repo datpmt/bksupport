@@ -42,6 +42,14 @@ vi:
       welcome: 'CHÀO MỪNG ĐẾN VỚI CỬA HÀNG ĐẶC SẢN VIỆT NAM'
       welcome_des: 'Nơi giúp bạn tiết kiệm túi tiền mà vẫn an tâm mua sắm'
       specialty: 'Đặc sản'
+    product_detail:
+      related_products: 'CÁC SẢN PHẨM LIÊN QUAN'
+
+  shopping:
+    index:
+      area: 'Khu vực'
+    products:
+      vietnamese_specialty: 'Đặc sản Việt Nam'
   header_csv:
     id: UID
     email: Email

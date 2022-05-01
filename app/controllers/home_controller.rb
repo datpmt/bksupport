@@ -77,4 +77,7 @@ class HomeController < ApplicationController
       redirect_to checkout_path(success: true)
     end
   end
+
+  def sitemap
+  end
 end
