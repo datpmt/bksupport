@@ -16,9 +16,6 @@ Rails.application.routes.draw do
     post 'information',       to: 'home#information'
 
 
-
-
-
     devise_for :customers, controllers: {
       sessions: 'customers/auths/sessions',
       registrations: 'customers/auths/registrations',
@@ -32,19 +29,21 @@ Rails.application.routes.draw do
     }
   end
 
-  devise_scope :administrator do
-    get 'admin', to: 'admins/auths/sessions#new'
-    get 'customers_export', to: 'admins/exports#customers_export'
-    get 'admins_export', to: 'admins/exports#admins_export'
-    get 'orders_export', to: 'admins/exports#orders_export'
-  end
+  scope "(:locale)", locale: /en/, defaults: {locale: "en"} do
+    devise_scope :administrator do
+      get 'admin', to: 'admins/auths/sessions#new'
+      get 'customers_export', to: 'admins/exports#customers_export'
+      get 'admins_export', to: 'admins/exports#admins_export'
+      get 'orders_export', to: 'admins/exports#orders_export'
+    end
 
-  namespace :admins, path: 'admin' do
-    resources :admins
-    resources :customers
-    resources :products
-    resources :photos
-    resources :orders
+    namespace :admins, path: 'admin' do
+      resources :admins
+      resources :customers
+      resources :products
+      resources :photos
+      resources :orders
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
