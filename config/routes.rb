@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get 'cart',               to: 'home#cart'
     get 'checkout',           to: 'home#checkout'
     get 'product_detail/:id', to: 'home#product_detail'
-    get 'sitemap',            to: 'home#sitemap'
+    get 'sitemap',            to: 'sitemap#index'
 
     post 'shopping',          to: 'shopping#cart'
     post 'order',             to: 'home#order'
