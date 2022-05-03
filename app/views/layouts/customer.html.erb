@@ -12,7 +12,9 @@
         <% else %>
           Quên mật khẩu
         <% end %>
-      <% else %>
+      <% elsif controller_name == 'sitemap' %>
+        Sitemap
+      <% elsif controller_name == 'payment' %>
         Payment
       <% end %>
     </title>
