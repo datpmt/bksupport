@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     get 'cart',               to: 'home#cart'
     get 'checkout',           to: 'home#checkout'
     get 'product_detail/:id', to: 'home#product_detail'
+
+
+    get 'payment',            to: 'payment#index'
+    post 'payment',           to: 'payment#create'
+
+
     get 'sitemap',            to: 'sitemap#index'
 
     post 'shopping',          to: 'shopping#cart'

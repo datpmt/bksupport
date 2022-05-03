@@ -31,11 +31,19 @@
           </td>
           <td><%= @customer.address + ' ' + @customer.district + ' ' + @customer.city %></td>
           <td style="color: green"><%= @order.detail %></td>
-          <td style="color: red"><%= @order.payment_method == 'cod' ? 'COD(Thanh toán khi nhận hàng)' : "Chuyển khoản #{number_with_delimiter(@order.total)} vnd vào tài khoản chúng tôi (ở bên dưới)." %></td>
+          <td style="color: red">
+            <% if @order.payment_method == 'cod' %>
+              COD (Thanh toán khi nhận hàng)
+            <% elsif @order.payment_method == 'paypal' %>
+              Paypal (Bạn đã thanh toán đơn hàng)
+            <% else %>
+              <%= "Chuyển khoản #{number_with_delimiter(@order.total)} vnd vào tài khoản chúng tôi (ở bên dưới)." %>
+            <% end %>
+          </td>
         </tr>
       </tbody>
     </table>
-    <% if @order.payment_method != 'cod' %>
+    <% if @order.payment_method == 'transfer' %>
       <h3>Thông tin tài khoản của <span style="font-weight: 700">dacsanvietnam.herokuapp.com</span></h3>
       <h2 style="color: red">Vui lòng chuyển khoản đúng theo thông tin bên dưới!</h2>
       <p>STK: <span style="font-weight: 700">0170171017777</span></p>

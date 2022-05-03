@@ -36,6 +36,8 @@
             <td>
               <% if order.payment_method == 'cod' %>
                 COD
+              <% elsif order.payment_method == 'paypal' %>
+                Paypal
               <% else %>
                 Transfers
               <% end %>

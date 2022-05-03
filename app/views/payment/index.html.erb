@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://js.stripe.com/v3/"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<div id='payment'>
+  <p style="font-size: 18px; color: #000000">Payment</p>
+  <p id='stripe-error' class="error" style="color: red; font-size: 16px"></p>
+  <% flash.each do |key, value| %>
+    <% if !value.nil? %>
+      <div class="error" style="<%=("color: #{key == 'error' ? 'red' : 'green'}") %>; font-size: 16px">
+        <%= value%>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="payment">
+    <div style="display: flex; justify-content: space-between; margin-top: 20px">
+      <label class="color: black" for="">Card Number</label>
+      <%= image_tag 'visa.png', style: 'height: 15px'%>
+    </div>
+    <span id="card-number" class="form-control" style="position: relative" >
+        <!-- Stripe Card Element -->
+    </span>
+    <div style="display: flex; justify-content: space-between; margin-top: 20px">
+      <div style="width: 223px">
+        <label class="color: black" for="">Expiry Date</label>
+        <span id="card-exp" class="form-control" style="width: 223px" >
+            <!-- Stripe Card Expiry Element -->
+        </span>
+      </div>
+      <div style="width: 124px">
+        <label class="color: black" for="">CVV</label>
+        <span id="card-cvc" class="form-control" style="width: 124px" >
+            <!-- Stripe CVC Element -->
+        </span>
+      </div>
+    </div>
+    <%= image_tag 'stripe.png', style:'width: 119px; margin-top: 12px' %>
+    <div style="display: flex; justify-content: space-between; margin: 0 auto; margin-top: 45px; width: 300px">
+      <%= link_to checkout_path(paypal: true) do %>
+        <button type="button" class="btn btn-back">Back</button>
+      <% end %>
+      <button type="submit" id="payment-submit" class="btn btn-pay">Pay</button>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+      // Create a Stripe client
+      var stripe = Stripe('pk_test_51KvAmZEivTknVUA30PrAQrp7EwCbx01LVr3vl3C2oZsOwZbiGYH9QwRC79Tz0CbtpeO7klrAgLQ4oRqa4wbHkLYt00GTFWqair');
+
+      // Create an instance of Elements
+      var elements = stripe.elements();
+
+      // Try to match bootstrap 4 styling
+      var style = {
+          base: {
+            'color': '#000000',
+            fontSize: '17px',
+            '::placeholder': {
+              'color': '#999999',
+            }
+          },
+      };
+
+      // Card number
+      var card = elements.create('cardNumber', {
+          'placeholder': 'Card number',
+          'font-size' : '17px',
+          'style': style
+      });
+      card.mount('#card-number');
+
+      // CVC
+      var cvc = elements.create('cardCvc', {
+          'placeholder': 'CVV',
+          'style': style
+      });
+      cvc.mount('#card-cvc');
+
+      // Card expiry
+      var exp = elements.create('cardExpiry', {
+          'placeholder': 'MM/YY',
+          'style': style
+      });
+      exp.mount('#card-exp');
+
+      // Submit
+      $('#payment-submit').on('click', function(e){
+          e.preventDefault();
+          var cardData = {
+            'name': '<%= current_customer.real_name %>'
+          };
+          stripe.createToken(card, cardData).then(function(result) {
+            if(result.error && result.error.message){
+              $('#stripe-error').html(result.error.message);
+            }else{
+              $.ajax({
+                url: `/payment`,
+                type: 'post',
+                data: {
+                  stripe_token: result.token.id,
+                  order_id: <%= params[:order_id] %>
+                },
+                success: function(data){
+                  console.log(data['success'])
+                  if(data['success'] == true){
+                    window.location.href = "/checkout?success=true";
+                  }else {
+                    window.location.href = "/pages/resident_agents/payment?order_id=" + order_id;
+                  }
+                }
+              })
+            }
+          });
+      });
+  });
+</script>

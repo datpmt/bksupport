@@ -72,9 +72,13 @@ class HomeController < ApplicationController
         district:       params[:district],
         address:        params[:address]
       )
-      OrderMailer.with(order: @order, customer: current_customer).order_email.deliver_later
-      flash[:success] = "Đặt hàng thành công. Vui lòng kiểm tra email để xem thông tin đơn hàng!"
-      redirect_to checkout_path(success: true)
+      if params[:payment_method] == 'paypal'
+        redirect_to payment_path(order_id: @order.id)
+      else
+        OrderMailer.with(order: @order, customer: current_customer).order_email.deliver_later
+        flash[:success] = "Đặt hàng thành công. Vui lòng kiểm tra email để xem thông tin đơn hàng!"
+        redirect_to checkout_path(success: true)
+      end
     end
   end
 
