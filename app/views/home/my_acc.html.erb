@@ -36,6 +36,8 @@
                           Đang xử lý
                         <% elsif order.status == 'shipping' %>
                           Đang vận chuyển
+                        <% elsif order.status == 'paid' %>
+                          Đã thanh toán (Đang xử lý)
                         <% else %>
                           Hoàn tất
                         <% end %>
